@@ -2,6 +2,7 @@ D:\Projects\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\ShinyBirthday.Mapping.
 D:\Projects\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\ShinyBirthday.Mapping.pdb
 D:\Projects\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\ConfOrm.dll
 D:\Projects\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\ConfOrm.Shop.dll
+D:\Projects\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\Iesi.Collections.dll
 D:\Projects\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\NHibernate.dll
 D:\Projects\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\ShinyBirthday.Entity.dll
 D:\Projects\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\ShinyBirthday.Entity.pdb
