@@ -1,0 +1,5 @@
+D:\Projects\ShinyBirthday\ShinyBirthday.Entity\bin\Debug\ShinyBirthday.Entity.dll
+D:\Projects\ShinyBirthday\ShinyBirthday.Entity\bin\Debug\ShinyBirthday.Entity.pdb
+D:\Projects\ShinyBirthday\ShinyBirthday.Entity\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\ShinyBirthday\ShinyBirthday.Entity\obj\Debug\ShinyBirthday.Entity.dll
+D:\Projects\ShinyBirthday\ShinyBirthday.Entity\obj\Debug\ShinyBirthday.Entity.pdb
