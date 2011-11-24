@@ -1,0 +1,5 @@
+D:\Projects\ShinyBirthday\ShinyBirthday.Web\bin\ShinyBirthday.Web.dll
+D:\Projects\ShinyBirthday\ShinyBirthday.Web\bin\ShinyBirthday.Web.pdb
+D:\Projects\ShinyBirthday\ShinyBirthday.Web\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\ShinyBirthday\ShinyBirthday.Web\obj\Debug\ShinyBirthday.Web.dll
+D:\Projects\ShinyBirthday\ShinyBirthday.Web\obj\Debug\ShinyBirthday.Web.pdb
