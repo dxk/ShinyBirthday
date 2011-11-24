@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ShinyBirthday.Service.Impl;
 using ShinyBirthday.Service;
+using ShinyBirthday.Web.Models.Shiny;
 
 namespace ShinyBirthday.Web.Controllers
 {
@@ -22,8 +23,8 @@ namespace ShinyBirthday.Web.Controllers
 
         public ActionResult Index()
         {
-            common.GetShiny();
-            return View();
+            ShinyInfoView siv = new ShinyInfoView(common.GetShiny());
+            return View(siv);
         }
 
     }
