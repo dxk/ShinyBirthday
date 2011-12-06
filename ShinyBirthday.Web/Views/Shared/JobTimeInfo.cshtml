@@ -1,0 +1,206 @@
+﻿<script type="text/javascript">
+    $(function () {
+        $(".jobTime").find(".jobTimeBtn").toggle(function () {
+            $(".jobTime").find("dl").show();
+            $(this).find("span").removeClass("headerOpen").addClass("headerClose");
+            $(".long").show();
+            $(".short").hide();
+        }, function () {
+            $(".jobTime").find("dl").hide();
+            $(this).find("span").removeClass("headerClose").addClass("headerOpen");
+            $(".long").hide();
+            $(".short").show();
+        });
+
+        var hideJobTime = $(".hideJobTime");
+        hideJobTime.click(function () {
+            $(this).closest("tr").hide();
+            if (hideJobTime.index($(this)) != hideJobTime.size() - 1) {
+                $(this).closest("tr").prev().show();
+            }
+        });
+
+        $(".editJobTime").click(function () {
+            $(this).closest("tr").hide();
+            $(this).closest("tr").next().show();
+        });
+
+        $(".addLine").click(function () {
+            hideJobTime.last().closest("tr").show();
+        });
+    });
+</script>
+<div class="articleLt long" style="float:left; height:160px; display:none"></div>
+<div class="articleLt short" style="float:left; height:60px"></div>
+<div class="jobTime">
+    <dt><a class="jobTimeBtn" href="javascript:void(0)">作业时间<span class="headerOpen"></span></a> </dt>
+    <dl>
+        <form action="">
+        <table width="100%" style="text-align: center;">
+            <tr>
+                <th>
+                    作业人员
+                </th>
+                <th>
+                    对应日区分
+                </th>
+                <th>
+                    对应方式
+                </th>
+                <th>
+                    开始日期
+                </th>
+                <th>
+                    共计日期
+                </th>
+                <th>
+                    人数
+                </th>
+                <th>
+                    小计
+                </th>
+                <th>
+                    出差费用
+                </th>
+                <th>
+                    备注
+                </th>
+                <th>
+                </th>
+            </tr>
+            <tr>
+                <form action="delete">
+                <td>
+                    <a href="#">设置</a>
+                </td>
+                <td>
+                    <select disabled name="" id="">
+                        <option value="1">工作日-标准工作时间</option>
+                        <option value="2">工作日-深夜对应</option>
+                        <option value="3">工作日-标准工作时间外</option>
+                        <option value="4">工作日-休息时间</option>
+                    </select>
+                </td>
+                <td>
+                    <select disabled name="" id="">
+                        <option value="1">现场</option>
+                        <option value="2">远程</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" readonly="true" value="2011-06-02" />
+                </td>
+                <td>
+                    <input style="width: 50px" readonly="true" type="text" value="2.00" />
+                </td>
+                <td>
+                    <input style="width: 20px" readonly="true" type="text" value="3" />
+                </td>
+                <td>
+                    6.00
+                </td>
+                <td>
+                    <input style="width: 50px" readonly="true" type="text" value="200" />
+                </td>
+                <td>
+                    <input type="text" readonly="true" value="住宿费用" />
+                </td>
+                <td align="left">
+                    <a class="editJobTime" href="javascript:void(0)">修改</a> <a href="javascript:void(0)">
+                        删除</a>
+                </td>
+                </form>
+            </tr>
+            <tr style="display: none">
+                <form action="edit">
+                <td>
+                    <a href="javascript:void(0）">设置</a>
+                </td>
+                <td>
+                    <select name="" id="">
+                        <option value="1">工作日-标准工作时间</option>
+                        <option value="2">工作日-深夜对应</option>
+                        <option value="3">工作日-标准工作时间外</option>
+                        <option value="4">工作日-休息时间</option>
+                    </select>
+                </td>
+                <td>
+                    <select name="" id="">
+                        <option value="1">现场</option>
+                        <option value="2">远程</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" value=" " />
+                </td>
+                <td>
+                    <input style="width: 50px" type="text" value=" " />
+                </td>
+                <td>
+                    <input style="width: 20px" type="text" value=" " />
+                </td>
+                <td>
+                </td>
+                <td>
+                    <input style="width: 50px" type="text" value="200" />
+                </td>
+                <td>
+                    <input type="text" value=" " />
+                </td>
+                <td align="left">
+                    <a href="javascript:void(0)">@FCSSResource.Save</a> <a class="hideJobTime" href="javascript:void(0)">
+                        取消</a>
+                </td>
+                </form>
+            </tr>
+
+            <tr style="display: none">
+                <form action="add">
+                <td>
+                    <a href="#">设置</a>
+                </td>
+                <td>
+                    <select name="" id="">
+                        <option value="1">工作日-标准工作时间</option>
+                        <option value="2">工作日-深夜对应</option>
+                        <option value="3">工作日-标准工作时间外</option>
+                        <option value="4">工作日-休息时间</option>
+                    </select>
+                </td>
+                <td>
+                    <select name="" id="">
+                        <option value="1">现场</option>
+                        <option value="2">远程</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" value=" " />
+                </td>
+                <td>
+                    <input style="width: 50px" type="text" value=" " />
+                </td>
+                <td>
+                    <input style="width: 20px" type="text" value=" " />
+                </td>
+                <td>
+                </td>
+                <td>
+                    <input style="width: 50px" type="text" value="200" />
+                </td>
+                <td>
+                    <input type="text" value=" " />
+                </td>
+                <td align="left">
+                    <a href="javascript:void(0)">@FCSSResource.Save</a> <a class="hideJobTime" href="javascript:void(0)">
+                        取消</a>
+                </td>
+                </form>
+            </tr>
+        </table>
+        <a class="addLine" href="javascript:void(0)">添加工作记录</a>
+        <div style="text-align: right;">
+            标准合计：400h
+        </div>
+        </form>
+    </dl>
+</div>

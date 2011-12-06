@@ -22,3 +22,5 @@ G:\project\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\Iesi.Collections.xml
 G:\project\ShinyBirthday\ShinyBirthday.Mapping\obj\Debug\ResolveAssemblyReference.cache
 G:\project\ShinyBirthday\ShinyBirthday.Mapping\obj\Debug\ShinyBirthday.Mapping.dll
 G:\project\ShinyBirthday\ShinyBirthday.Mapping\obj\Debug\ShinyBirthday.Mapping.pdb
+D:\Projects\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\Iesi.Collections.xml
+D:\Projects\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\NHibernate.xml

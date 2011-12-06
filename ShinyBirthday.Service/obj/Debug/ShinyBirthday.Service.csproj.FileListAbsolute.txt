@@ -9,3 +9,4 @@ D:\Projects\ShinyBirthday\ShinyBirthday.Service\bin\Debug\Iesi.Collections.dll
 D:\Projects\ShinyBirthday\ShinyBirthday.Service\bin\Debug\NHibernate.dll
 D:\Projects\ShinyBirthday\ShinyBirthday.Service\bin\Debug\Iesi.Collections.xml
 D:\Projects\ShinyBirthday\ShinyBirthday.Service\bin\Debug\NHibernate.xml
+D:\Projects\ShinyBirthday\ShinyBirthday.Service\bin\Debug\Youmay.dll

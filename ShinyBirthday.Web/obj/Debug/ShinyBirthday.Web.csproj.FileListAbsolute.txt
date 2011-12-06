@@ -65,3 +65,6 @@ G:\project\ShinyBirthday\ShinyBirthday.Web\bin\ShinyBirthday.Mapping.pdb
 G:\project\ShinyBirthday\ShinyBirthday.Web\obj\Debug\ResolveAssemblyReference.cache
 G:\project\ShinyBirthday\ShinyBirthday.Web\obj\Debug\ShinyBirthday.Web.dll
 G:\project\ShinyBirthday\ShinyBirthday.Web\obj\Debug\ShinyBirthday.Web.pdb
+D:\Projects\ShinyBirthday\ShinyBirthday.Web\bin\Youmay.dll
+D:\Projects\ShinyBirthday\ShinyBirthday.Web\bin\Youmay.Services.dll
+D:\Projects\ShinyBirthday\ShinyBirthday.Web\bin\Youmay.Web.dll
