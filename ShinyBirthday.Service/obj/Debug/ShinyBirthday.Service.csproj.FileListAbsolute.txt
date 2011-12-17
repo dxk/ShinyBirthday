@@ -5,3 +5,8 @@ D:\Projects\ShinyBirthday\ShinyBirthday.Service\bin\Debug\ShinyBirthday.Entity.p
 D:\Projects\ShinyBirthday\ShinyBirthday.Service\obj\Debug\ResolveAssemblyReference.cache
 D:\Projects\ShinyBirthday\ShinyBirthday.Service\obj\Debug\ShinyBirthday.Service.dll
 D:\Projects\ShinyBirthday\ShinyBirthday.Service\obj\Debug\ShinyBirthday.Service.pdb
+D:\Projects\ShinyBirthday\ShinyBirthday.Service\bin\Debug\Iesi.Collections.dll
+D:\Projects\ShinyBirthday\ShinyBirthday.Service\bin\Debug\NHibernate.dll
+D:\Projects\ShinyBirthday\ShinyBirthday.Service\bin\Debug\Iesi.Collections.xml
+D:\Projects\ShinyBirthday\ShinyBirthday.Service\bin\Debug\NHibernate.xml
+D:\Projects\ShinyBirthday\ShinyBirthday.Service\bin\Debug\Youmay.dll

@@ -6,15 +6,18 @@ using System.Web.Mvc;
 using ShinyBirthday.Service.Impl;
 using ShinyBirthday.Service;
 using ShinyBirthday.Web.Models.Shiny;
+using Youmay.Web;
+using ShinyBirthday.Entity;
 
 namespace ShinyBirthday.Web.Controllers
 {
-    public class ShinyController : Controller
+    public class ShinyController : BaseController
     {
         //
         // GET: /Shiny/
 
-        private ICommon common = new Common();
+        private ICommon common = new CommonService();
+        private IMessage messageservice = new MessageService();
 
         public ShinyController()
         {
@@ -25,6 +28,23 @@ namespace ShinyBirthday.Web.Controllers
         {
             ShinyInfoView siv = new ShinyInfoView(common.GetShiny());
             return View(siv);
+        }
+
+        public ActionResult AddMessage(AddMessageForm message)
+        {
+            if (ModelState.IsValid)
+            {
+                messageservice.InsertInto(new Messages
+                {
+                    Message = message.MessageWords
+                });
+            }
+            return AjaxJson();
+        }
+
+        public ActionResult GetFiveMessage()
+        {
+            return Json(messageservice.GetFiveMessage());
         }
 
     }

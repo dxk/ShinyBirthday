@@ -1,10 +1,62 @@
 ﻿@model ShinyBirthday.Web.Models.Shiny.ShinyInfoView
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+@section Title{
+Shiny
 }
+@section SiteHead{<script src="../../Scripts/jquery-1.6.1-vsdoc.js" type="text/javascript"></script>
+    <script type="text/javascript">
 
-<div>猪猪！</div>
-<p>@Model.Id</p>
-<p>@Model.Age</p>
-<p>@Model.Name</p>
-<p>@Model.Hobby</p>
+        var timer = window.setInterval(ReloadTags, 1000);
+
+        function BtnAjaxSubmit() {
+            $("#ErrorInformation").hide(100);
+            var searchUserForm = $("#addissuetag").closest("form");
+            searchUserForm.ajaxForm({
+                type: "Post",
+                success: function (data) {
+                    if (data.Success) {
+                        $("#ErrorInformation").html("<font color='green'>Success!<font/>").show(1000);
+                        ReloadTags();
+                    } else {
+                        $("#ErrorInformation").html("<font color='red'>Error!<font/>").show(1000);
+                    }
+                }
+            }).submit();
+        }
+
+        function ReloadTags() {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetFiveMessage", "Shiny")',
+                dataType: "json",
+                success: function (data) {
+                    $(".showMessage").html("");
+                    $.each(data, function (index, view) {
+                        $("<li><span>" + view["Name"] + "</span><a href='javascript:void(0)' action='" + view["Id"] + "'></a><li>").appendTo($(".showMessage"));
+                        $(".showMessage").find("a").unbind("click").bind("click", function () {
+                            deleteTag($(this).attr("action"));
+                        });
+                    });
+                }
+            });
+        }
+        
+    </script>
+}
+@section SiteMap{
+    @*@Model.Name @Model.Id @Model.Age @Model.Hobby*@
+}
+@section SitePageName{
+尽情的祝福吧...
+}
+<div id="ErrorInformation" style="display: none;">
+</div>
+<div>
+    @using (Html.BeginForm("AddMessage", "Shiny", FormMethod.Post, new { id = "AddMessageForm" }))
+    {
+        @Html.TextArea("MessageWords", null, new { @style = "width:140px;" })
+        <input type="button" onclick="BtnAjaxSubmit()" id="addissuetag" value="添加" /><br />
+    }
+</div>
+<br />
+<div class="showMessage" style=" background-color:#F6F6F4; font-size:large; width:300px;">
+</div>

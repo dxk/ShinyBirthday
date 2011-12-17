@@ -1,0 +1,36 @@
+﻿@model DateFilterFieldGroupViewModel
+@{
+    string ddlName = Model.GroupName + ".DateFilterType";
+    string datePickerName = Model.GroupName + "-datePicker";
+    string monthRangName = Model.GroupName + "-monthRang";
+}
+@if (String.IsNullOrEmpty(Model.OptionLabel))
+{ 
+    @Html.DropDownList(ddlName, Model.DateFilterTypeList) 
+}
+else
+{
+    @Html.DropDownList(ddlName, Model.DateFilterTypeList, Model.OptionLabel) 
+}
+<span id="@datePickerName" style="display: none">@FCSSResource.FormDate：@Html.TextBox(Model.GroupName + ".StartDateTime", null, new { @class = "date-picker" })
+    @FCSSResource.ToDate：@Html.TextBox(Model.GroupName + ".EndDateTime", null, new { @class = "date-picker" })
+</span><span id="@monthRangName">@Html.MonthPicker(Model.GroupName + ".Start")
+    @FCSSResource.ToDate：@Html.MonthPicker(Model.GroupName + ".End")
+</span>
+<script type="text/javascript">
+    $(document).ready(function () {
+        dependShow(
+        '#@(Model.GroupName + "_DateFilterType")',
+        '#@datePickerName',
+        function (trigger, target) {
+            return trigger.val() == '@((int)DateFilterType.TimePeriod)'
+        });
+
+        dependShow(
+        '#@(Model.GroupName + "_DateFilterType")',
+        '#@monthRangName',
+        function (trigger, target) {
+            return trigger.val() == '@((int)DateFilterType.MonthRang)'
+        });
+    });
+</script>
