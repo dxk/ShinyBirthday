@@ -2,7 +2,8 @@
 @section Title{
 Shiny
 }
-@section SiteHead{<script src="../../Scripts/jquery-1.6.1-vsdoc.js" type="text/javascript"></script>
+@section SiteHead{
+    <script src="../../Scripts/jquery-1.6.1-vsdoc.js" type="text/javascript"></script>
     <script type="text/javascript">
 
         var timer = window.setInterval(ReloadTags, 1000);
@@ -31,7 +32,11 @@ Shiny
                 success: function (data) {
                     $(".showMessage").html("");
                     $.each(data, function (index, view) {
-                        $("<li><span>" + view["Name"] + "</span><a href='javascript:void(0)' action='" + view["Id"] + "'></a><li>").appendTo($(".showMessage"));
+                        var message = view["Name"];
+                        var k = message.indexOf(':');
+                        var friendName = message.substring(0, k);
+                        var friendMesg = message.substring(k);
+                        $("<li><span style='width:100px;'>" + friendName + "</span><span>" + friendMesg + "</span><a href='javascript:void(0)' action='" + view["Id"] + "'></a><li>").appendTo($(".showMessage"));
                         $(".showMessage").find("a").unbind("click").bind("click", function () {
                             deleteTag($(this).attr("action"));
                         });
@@ -48,15 +53,33 @@ Shiny
 @section SitePageName{
 尽情的祝福吧...
 }
+<span style="width: 100px;"></span>
 <div id="ErrorInformation" style="display: none;">
 </div>
-<div>
+@*<div>
     @using (Html.BeginForm("AddMessage", "Shiny", FormMethod.Post, new { id = "AddMessageForm" }))
     {
         @Html.TextArea("MessageWords", null, new { @style = "width:140px;" })
         <input type="button" onclick="BtnAjaxSubmit()" id="addissuetag" value="添加" /><br />
     }
-</div>
+</div>*@
 <br />
-<div class="showMessage" style=" background-color:#F6F6F4; font-size:large; width:300px;">
+<div class="showMessage" style="font-size: large; position:absolute; width: 300px; height:300px; background-color:#F9D1C8; margin:10px 10px 10px 10px； ">
 </div>
+@using (Html.BeginForm("AddMessage", "Shiny", FormMethod.Post, new { id = "AddMessageForm" }))
+{
+    <div style="position: absolute; top: 424px; left: 830px; background-color:#F9D1C9; padding:4px 4px 4px 4px;">
+        姓名：<input type="text" id="firendName" name="firendName" style="width: 80px; padding: 0px 10px 0px 2px;" />
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="margin: 0px 0px 0px 0px;">验证：</span>
+        <img alt="验证" src="../../Content/Images/1+1.png" style="width: 50px; height: 16px;
+            margin: 2px 0px 0px 0px; padding: 0px 0px 0px 0px; position: absolute;" />
+        <span style="margin: 0px 51px 0px 0px;"></span>=<input type="text" id="yanzheng"
+            name="yanzheng" style="width: 20px;" />
+        <textarea name="MessageWords" class="bor input_click" ucflag="0" id="MessageWords"
+            rows="4" cols="60" style="color: Gray; padding: 10px;">既然来了就留句话吧......</textarea>
+    </div>
+    <div style="position: absolute; top: 506px; left: 1112px;">
+        <input type="button" id="addissuetag" onclick="BtnAjaxSubmit()" name="addissuetag"
+            value="提交" style="cursor: pointer;" />
+    </div>
+}

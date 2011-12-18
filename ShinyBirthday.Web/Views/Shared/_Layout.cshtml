@@ -10,6 +10,8 @@
 <link rel="stylesheet" media="screen,projection" type="text/css" href="@Url.Content("~/Content/Styles/share.css") " />
 <link rel="stylesheet" media="screen,projection" type="text/css" href="@Url.Content("~/Content/Styles/mystyle.css") " />
 <link rel="stylesheet" media="screen,projection" type="text/css" href="@Url.Content("~/Content/Styles/jquery.tooltip.css") " />
+<link rel="stylesheet" media="screen,projection" type="text/css" href="@Url.Content("~/Content/guestbook_d_out.css") " />
+<link rel="stylesheet" media="screen,projection" type="text/css" href="@Url.Content("~/Content/color_out.css") " />
 <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.4.2.min.js") "></script>
 <script type="text/javascript" src="@Url.Content("~/Scripts/switcher.js") "></script>
 <script type="text/javascript" src="@Url.Content("~/Scripts/toggle.js") "></script>
@@ -67,19 +69,17 @@
             </tr>
             <tr>
                 <td colspan="2" class="articleLt" style="padding: 0px;">
-                    <div class="articleRt" style="padding: 10px; background-color: transparent">
-                        &nbsp;&nbsp;&nbsp;&nbsp;当前留言
+                    <div class="articleRt" style="padding: 2px; background-color: transparent">
                     </div>
                 </td>
             </tr>
             <tr>
                 <td valign="top" class="articleLt" width="10000px;">
-                    <div style="min-height: 491px;background-image:../../Content/Images/ContantBack.jpg">
+                    <div style="min-height: 491px;background-image:url(../../Content/Images/ContantBack.jpg)">
                         @RenderBody()
                     </div>
                 </td>
-                <td valign="top" class="articleRt">
-                    ...
+                <td valign="top" class="articleRt" style=" padding-right:2px;">
                 </td>
             </tr>
             <tr>

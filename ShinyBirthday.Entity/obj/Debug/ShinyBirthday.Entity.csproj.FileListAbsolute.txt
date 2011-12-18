@@ -3,3 +3,8 @@ D:\Projects\ShinyBirthday\ShinyBirthday.Entity\bin\Debug\ShinyBirthday.Entity.pd
 D:\Projects\ShinyBirthday\ShinyBirthday.Entity\obj\Debug\ResolveAssemblyReference.cache
 D:\Projects\ShinyBirthday\ShinyBirthday.Entity\obj\Debug\ShinyBirthday.Entity.dll
 D:\Projects\ShinyBirthday\ShinyBirthday.Entity\obj\Debug\ShinyBirthday.Entity.pdb
+G:\project\ShinyBirthday\ShinyBirthday.Entity\bin\Debug\ShinyBirthday.Entity.dll
+G:\project\ShinyBirthday\ShinyBirthday.Entity\bin\Debug\ShinyBirthday.Entity.pdb
+G:\project\ShinyBirthday\ShinyBirthday.Entity\obj\Debug\ResolveAssemblyReference.cache
+G:\project\ShinyBirthday\ShinyBirthday.Entity\obj\Debug\ShinyBirthday.Entity.dll
+G:\project\ShinyBirthday\ShinyBirthday.Entity\obj\Debug\ShinyBirthday.Entity.pdb

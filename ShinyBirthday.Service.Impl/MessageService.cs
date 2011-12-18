@@ -22,11 +22,11 @@ namespace ShinyBirthday.Service.Impl
         public List<NameIdView> GetFiveMessage()
         {
             var query = session.Query<Messages>().ToList();
-            return query.Skip(query.Count-5).Take(5).Select(q =>
+            return query.Skip(query.Count - 5).Take(5).Select(q =>
                  new NameIdView
                     {
                         Id = q.Id,
-                        Name = q.Message
+                        Name = q.Friender + ":" + q.Message
                     }
                 ).ToList<NameIdView>();
         }

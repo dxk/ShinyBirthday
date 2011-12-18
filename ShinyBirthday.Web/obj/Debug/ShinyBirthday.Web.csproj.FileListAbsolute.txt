@@ -68,3 +68,6 @@ G:\project\ShinyBirthday\ShinyBirthday.Web\obj\Debug\ShinyBirthday.Web.pdb
 D:\Projects\ShinyBirthday\ShinyBirthday.Web\bin\Youmay.dll
 D:\Projects\ShinyBirthday\ShinyBirthday.Web\bin\Youmay.Services.dll
 D:\Projects\ShinyBirthday\ShinyBirthday.Web\bin\Youmay.Web.dll
+G:\project\ShinyBirthday\ShinyBirthday.Web\bin\Youmay.dll
+G:\project\ShinyBirthday\ShinyBirthday.Web\bin\Youmay.Services.dll
+G:\project\ShinyBirthday\ShinyBirthday.Web\bin\Youmay.Web.dll

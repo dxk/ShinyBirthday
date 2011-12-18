@@ -24,3 +24,4 @@ G:\project\ShinyBirthday\ShinyBirthday.Mapping\obj\Debug\ShinyBirthday.Mapping.d
 G:\project\ShinyBirthday\ShinyBirthday.Mapping\obj\Debug\ShinyBirthday.Mapping.pdb
 D:\Projects\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\Iesi.Collections.xml
 D:\Projects\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\NHibernate.xml
+G:\project\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\NHibernate.xml
