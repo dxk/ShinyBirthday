@@ -364,6 +364,7 @@
     <Content Include="Content\ckeditor\themes\default\theme.js" />
     <Content Include="Content\color_out.css" />
     <Content Include="Content\guestbook_d_out.css" />
+    <Content Include="Content\ImageFlow_style.css" />
     <Content Include="Content\Images\1+1.png" />
     <Content Include="Content\Images\a.png" />
     <Content Include="Content\Images\arrow.png" />
@@ -1505,6 +1506,7 @@
     <Content Include="Content\Plugins\fckeditor\_whatsnew.html" />
     <Content Include="Content\Plugins\fckeditor\_whatsnew_history.html" />
     <Content Include="Content\Plugins\ofc\open-flash-chart.swf" />
+    <Content Include="Content\ShinyImg\1.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Styles\jquery-ui-1.8.1.custom.css" />
     <Content Include="Content\Styles\jquery.tooltip.css" />
@@ -1542,6 +1544,8 @@
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
+    <Content Include="Content\imageflow.packed.css" />
+    <Content Include="Scripts\imageflow.packed.js" />
     <Content Include="Scripts\jquery-1.4.2.min.js" />
     <Content Include="Scripts\jquery-1.6.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.1.js" />
@@ -1673,12 +1677,6 @@
     <None Include="Content\Plugins\fckeditor\_samples\php\sampleposteddata.php" />
     <None Include="Content\Plugins\fckeditor\_samples\py\sample01.py" />
     <None Include="Content\Plugins\fckeditor\_samples\py\sampleposteddata.py" />
-    <None Include="Content\Template\Customer.xls" />
-    <None Include="Content\Template\IssueRecord.xls" />
-    <None Include="Content\Template\PatchRecord.xls" />
-    <None Include="Content\Template\ProjectWorkingHour.xls" />
-    <None Include="Content\Template\WorkingHour.xls" />
-    <None Include="Content\Template\WorkReport.xls" />
     <Content Include="Views\Shared\AjaxPagination.cshtml" />
     <Content Include="Views\Shared\DateRange.cshtml" />
     <Content Include="Views\Shared\Dependencies.cshtml" />
@@ -1691,6 +1689,7 @@
     <Content Include="Views\Shared\Unauthorized.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shiny\ShowShiny.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShinyBirthday.Entity\ShinyBirthday.Entity.csproj">

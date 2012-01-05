@@ -12,5 +12,8 @@ namespace ShinyBirthday.Web.Models.Shiny
 
         [Required, StringLength(20)]
         public string MessageWords { get; set; }
+
+        [Required,StringLength(10)]
+        public string FriendName { get; set; }
     }
 }

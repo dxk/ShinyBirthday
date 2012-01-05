@@ -36,7 +36,8 @@ namespace ShinyBirthday.Web.Controllers
             {
                 messageservice.InsertInto(new Messages
                 {
-                    Message = message.MessageWords
+                    Message = message.MessageWords,
+                    Friender = message.FriendName
                 });
             }
             return AjaxJson();
@@ -45,6 +46,11 @@ namespace ShinyBirthday.Web.Controllers
         public ActionResult GetFiveMessage()
         {
             return Json(messageservice.GetFiveMessage());
+        }
+
+        public ActionResult ShowShiny()
+        {
+            return View();
         }
 
     }
