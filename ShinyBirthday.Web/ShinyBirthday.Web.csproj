@@ -365,7 +365,7 @@
     <Content Include="Content\color_out.css" />
     <Content Include="Content\guestbook_d_out.css" />
     <Content Include="Content\ImageFlow_style.css" />
-    <Content Include="Content\Images\1+1.png" />
+    <Content Include="Content\Images\CheckingImg\1+1.png" />
     <Content Include="Content\Images\a.png" />
     <Content Include="Content\Images\arrow.png" />
     <Content Include="Content\Images\arrow_red.gif" />
@@ -377,6 +377,9 @@
     <Content Include="Content\Images\btn-create-left.gif" />
     <Content Include="Content\Images\btn-create-right.gif" />
     <Content Include="Content\Images\btn_search.gif" />
+    <Content Include="Content\Images\CheckingImg\2+4.png" />
+    <Content Include="Content\Images\CheckingImg\2+8.png" />
+    <Content Include="Content\Images\CheckingImg\2X9.png" />
     <Content Include="Content\Images\content-h1.gif" />
     <Content Include="Content\Images\content.gif" />
     <Content Include="Content\Images\datePicker.png" />
@@ -1507,6 +1510,7 @@
     <Content Include="Content\Plugins\fckeditor\_whatsnew_history.html" />
     <Content Include="Content\Plugins\ofc\open-flash-chart.swf" />
     <Content Include="Content\ShinyImg\1.jpg" />
+    <Content Include="Content\simpleTicker.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Styles\jquery-ui-1.8.1.custom.css" />
     <Content Include="Content\Styles\jquery.tooltip.css" />

@@ -1,0 +1,5 @@
+.ticker { width:180px; height:300px; border:1px solid #aaaaaa; overflow:auto; }
+.ticker_dt { font:normal 14px Georgia; padding:0 10px 5px 10px; background-color:#e5e5e5; padding-top:10px; border:1px solid #ffffff; border-bottom:none; border-right:none; position:relative; }
+.ticker_dd { margin-left:0; font:normal 11px Verdana; padding:0 10px 10px 10px; border-bottom:1px solid #aaaaaa; background-color:#e5e5e5; border-left:1px solid #ffffff; position:relative; }
+.ticker_dd_last { border-bottom:1px solid #ffffff; }
+.ticker_div { margin-top:0; }

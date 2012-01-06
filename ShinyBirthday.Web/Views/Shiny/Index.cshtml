@@ -3,9 +3,29 @@
 Shiny
 }
 @section SiteHead{
-    <script src="../../Scripts/imageflow.packed.js" type="text/javascript"></script>
+    <script src="../../Scripts/jquery-1.6.1-vsdoc.js" type="text/javascript"></script>
     <script type="text/javascript">
-        var timer = window.setInterval(ReloadTags, 1000);
+        var timer = window.setInterval(ReloadTags, 5000);
+
+        function ReloadTags() {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetFiveMessage", "Shiny")',
+                dataType: "json",
+                success: function (data) {
+                    var index = 0;
+                    $.each(data, function (index, view) {
+                        var message = view["Name"];
+                        var k = message.indexOf(':');
+                        var friendName = message.substring(0, k + 1);
+                        var friendMesg = message.substring(k + 1);
+                        index++;
+                        $("#dt_" + index).html("<a href='#'>" + friendName + "</a>");
+                        $("#dd_" + index).html(friendMesg);
+                    });
+                }
+            });
+        }
 
         function BtnAjaxSubmit() {
             $("#ErrorInformation").hide(100);
@@ -14,35 +34,18 @@ Shiny
                 type: "Post",
                 success: function (data) {
                     if (data.Success) {
+                        $("#ImgYanZheng").attr("src", "../../Content/Images/CheckingImg/" + data.toString());
                         $("#ErrorInformation").html("<font color='green'>Success!<font/>").show(1000);
                         ReloadTags();
+                        $("#ErrorInformation").hide(500);
                     } else {
-                        $("#ErrorInformation").html("<font color='red'>Error!<font/>").show(1000);
+                        $("#ErrorInformation").html("<font color='red'>Error!<font/>").fadeTo(1000, 0.8);
+                        $("#ErrorInformation").hide(500);
                     }
                 }
             }).submit();
         }
-
-        function ReloadTags() {
-            $.ajax({
-                type: "GET",
-                url: '@Url.Action("GetFiveMessage", "Shiny")',
-                dataType: "json",
-                success: function (data) {
-                    $(".showMessage").html("");
-                    $.each(data, function (index, view) {
-                        var message = view["Name"];
-                        var k = message.indexOf(':');
-                        var friendName = message.substring(0, k);
-                        var friendMesg = message.substring(k);
-                        $("<li><span style='width:100px;'>" + friendName + "</span><span>" + friendMesg + "</span><a href='javascript:void(0)' action='" + view["Id"] + "'></a><li>").appendTo($(".showMessage"));
-                        $(".showMessage").find("a").unbind("click").bind("click", function () {
-                            deleteTag($(this).attr("action"));
-                        });
-                    });
-                }
-            });
-        }
+      
     </script>
 }
 @section SiteMap{
@@ -51,15 +54,62 @@ Shiny
 @section SitePageName{
 尽情的祝福吧...
 }
-
 <span style="width: 100px;"></span>
 <!-- 错误消息 -->
-<div id="ErrorInformation" style="display: none;">
+<div id="ErrorInformation" style="display: none; font-size: 30px; position: absolute;
+    left: 950px; top: 470px; z-index: 10;">
 </div>
 <br />
 <!-- 朋友的留言 -->
-<div class="showMessage" style="font-size: large; position: absolute; width: 300px;
-    height: 300px; background-color: ; margin: 10px 10px 10px 10px；">
+<div id="tickerContainer" style="text-align: left; margin-top: 0; position: absolute;
+    left: 25px;">
+    <dl id="ticker" style="width: 250px; height: 455px; border: 1px solid #D7D4C1; overflow: auto;">
+        <dt class="ticker_dt" id="dt_1">This is a ABC! </dt>
+        <dd class="ticker_dd" id="dd_1">
+            This is a snippet of the news. It could be the whole news item or it could link
+            to another page containing...</dd>
+        <dt>&nbsp;</dt>
+        <dt class="ticker_dt" id="dt_2">This is a ABC! </dt>
+        <dd class="ticker_dd" id="dd_2">
+            This is a snippet of the news. It could be the whole news item or it could link
+            to another page containing...</dd>
+        <dt>&nbsp;</dt>
+        <dt class="ticker_dt" id="dt_3">This is a ABC! </dt>
+        <dd class="ticker_dd" id="dd_3">
+            This is a snippet of the news. It could be the whole news item or it could link
+            to another page containing...</dd>
+        <dt>&nbsp;</dt>
+        <dt class="ticker_dt" id="dt_4">This is a ABC! </dt>
+        <dd class="ticker_dd" id="dd_4">
+            This is a snippet of the news. It could be the whole news item or it could link
+            to another page containing...</dd>
+        <dt>&nbsp;</dt>
+        <dt class="ticker_dt" id="dt_5">This is a ABC! </dt>
+        <dd class="ticker_dd" id="dd_5">
+            This is a snippet of the news. It could be the whole news item or it could link
+            to another page containing...</dd>
+        <dt>&nbsp;</dt>
+        <dt class="ticker_dt" id="dt_6">This is a ABC! </dt>
+        <dd class="ticker_dd" id="dd_6">
+            This is a snippet of the news. It could be the whole news item or it could link
+            to another page containing...</dd>
+        <dt>&nbsp;</dt>
+        <dt class="ticker_dt" id="dt_7">This is a ABC! </dt>
+        <dd class="ticker_dd" id="dd_7">
+            This is a snippet of the news. It could be the whole news item or it could link
+            to another page containing...</dd>
+        <dt>&nbsp;</dt>
+        <dt class="ticker_dt" id="dt_8">This is a ABC! </dt>
+        <dd class="ticker_dd" id="dd_8">
+            This is a snippet of the news. It could be the whole news item or it could link
+            to another page containing...</dd>
+        <dt>&nbsp;</dt>
+        <dt class="ticker_dt" id="dt_9">This is a ABC! </dt>
+        <dd class="ticker_dd" id="dd_9">
+            This is a snippet of the news. It could be the whole news item or it could link
+            to another page containing...</dd>
+        <dt>&nbsp;</dt>
+    </dl>
 </div>
 <!-- 留言动作 -->
 @using (Html.BeginForm("AddMessage", "Shiny", FormMethod.Post, new { id = "AddMessageForm" }))
@@ -68,10 +118,10 @@ Shiny
         padding: 4px 4px 4px 4px;">
         姓名：<input type="text" id="FriendName" name="FriendName" style="width: 80px; padding: 0px 10px 0px 2px;" />
         &nbsp;&nbsp;&nbsp;&nbsp;<span style="margin: 0px 0px 0px 0px;">验证：</span>
-        <img alt="验证" src="../../Content/Images/1+1.png" style="width: 50px; height: 16px;
+        <img id="ImgYanZheng" alt="验证" src="../../Content/Images/CheckingImg/@Model.YanzhengImg" style="width: 50px; height: 16px;
             margin: 2px 0px 0px 0px; padding: 0px 0px 0px 0px; position: absolute;" />
-        <span style="margin: 0px 51px 0px 0px;"></span>=<input type="text" id="yanzheng"
-            name="yanzheng" style="width: 20px;" />
+        <span style="margin: 0px 51px 0px 0px;"></span>=<input type="text" id="YanzhengValue"
+            name="YanzhengValue" style="width: 20px;" />
         <textarea name="MessageWords" class="bor input_click" ucflag="0" id="MessageWords"
             rows="4" cols="60" style="color: Gray; padding: 10px;">既然来了就留句话吧......</textarea>
     </div>
@@ -80,3 +130,64 @@ Shiny
             value="提交" style="cursor: pointer;" />
     </div>
 }
+<script type="text/javascript">
+    $(function () {
+
+        ReloadTags();
+
+        //cache the ticker
+        var ticker = $("#ticker");
+
+        //wrap dt:dd pairs in divs
+        ticker.children().filter("li").each(function () {
+
+            var dt = $(this),
+		    container = $("<div>");
+
+            dt.next().appendTo(container);
+            dt.prependTo(container);
+
+            container.appendTo(ticker);
+        });
+
+        //hide the scrollbar
+        ticker.css("overflow", "hidden");
+
+        //animator function
+        function animator(currentItem) {
+
+            //work out new anim duration
+            var distance = currentItem.height();
+            duration = (distance + parseInt(currentItem.css("marginTop"))) / 0.025;
+
+            //animate the first child of the ticker
+            currentItem.animate({ marginTop: -distance }, duration, "linear", function () {
+
+                //move current item to the bottom
+                currentItem.appendTo(currentItem.parent()).css("marginTop", 0);
+
+                //recurse
+                animator(currentItem.parent().children(":first"));
+            });
+        };
+
+        //start the ticker
+        animator(ticker.children(":first"));
+
+        //set mouseenter
+        ticker.mouseenter(function () {
+
+            //stop current animation
+            ticker.children().stop();
+
+        });
+
+        //set mouseleave
+        ticker.mouseleave(function () {
+
+            //resume animation
+            animator(ticker.children(":first"));
+
+        });
+    });
+</script>

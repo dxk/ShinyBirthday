@@ -10,10 +10,13 @@ namespace ShinyBirthday.Web.Models.Shiny
     {
         public int Id { get; set; }
 
-        [Required, StringLength(20)]
+        [Required, StringLength(500)]
         public string MessageWords { get; set; }
 
-        [Required,StringLength(10)]
+        [Required,StringLength(20)]
         public string FriendName { get; set; }
+
+        [Required, StringLength(5)]
+        public string YanzhengValue { get; set; }
     }
 }
