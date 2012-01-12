@@ -24,61 +24,60 @@ namespace ShinyBirthday.Web.Controllers
 
         }
 
-        public static int YIK = 0;
-
         public ActionResult Index()
         {
-            Random random = new Random();
-            YIK = Convert.ToInt32(random.Next(0, 3));
-            ShinyInfoView siv = new ShinyInfoView(common.GetShiny(), GetCheckImgList()[YIK]);
+            int visitorNum = common.GetVisitorvolume(GetClientIp());
+            ShinyInfoView siv = new ShinyInfoView(common.GetShiny(), visitorNum);
             return View(siv);
+        }
+
+        /// <summary>
+        /// 获取客户端的IP，可以取到代理后的IP
+        /// </summary>
+        public static string GetClientIp()
+        {
+            string l_ret = string.Empty;
+            if (!string.IsNullOrEmpty(System.Web.HttpContext.Current.Request.ServerVariables["HTTP_VIA"]))
+                l_ret = Convert.ToString(System.Web.HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"]);
+            if (string.IsNullOrEmpty(l_ret))
+                l_ret = Convert.ToString(System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
+            return l_ret;
         }
 
         public ActionResult AddMessage(AddMessageForm message)
         {
             if (ModelState.IsValid)
             {
-                string str = GetCheckImgList()[YIK];
-                str = str.Substring(0, str.IndexOf('.'));
+                var securityCode = TempData["SecurityCodeKey2011_3_29_17_34"] as string;
+                if (string.IsNullOrEmpty(securityCode))
+                {
+                    //验证码不存在或过期
+                    return Json(null, false);
+                }
+                else
+                {
+                    //不区分大小写C#+IBatis+MVC3.0+Sql+验证码实例 
+                    if (!securityCode.Equals(message.YanzhengValue))
+                        //验证码错误
+                        return Json(null, false);
+                    else
+                        TempData["SecurityCodeKey2011_3_29_17_34"] = null;
+                }
 
-                if (str.IndexOf('+') > 0)
+                try
                 {
-                    int fi = Convert.ToInt32(str.Substring(0, str.IndexOf('+')));
-                    int ei = Convert.ToInt32(str.Substring(str.IndexOf('+') + 1));
-                    if ((fi + ei) != Convert.ToInt32(message.YanzhengValue))
-                        return Json(null, false);
+                    messageservice.InsertInto(new Messages
+                    {
+                        Message = message.MessageWords,
+                        Friender = message.FriendName
+                    });
                 }
-                else if (str.IndexOf('-') > 0)
+                catch (Exception)
                 {
-                    int fi = Convert.ToInt32(str.Substring(0, str.IndexOf('-')));
-                    int ei = Convert.ToInt32(str.Substring(str.IndexOf('-') + 1));
-                    if ((fi - ei) != Convert.ToInt32(message.YanzhengValue))
-                        return Json(null, false);
+                    return Json(null, false);
                 }
-                else if (str.IndexOf('X') > 0)
-                {
-                    int fi = Convert.ToInt32(str.Substring(0, str.IndexOf('*')));
-                    int ei = Convert.ToInt32(str.Substring(str.IndexOf('*') + 1));
-                    if ((fi * ei) != Convert.ToInt32(message.YanzhengValue))
-                        return Json(null, false);
-                }
-                else if (str.IndexOf('C') > 0)
-                {
-                    int fi = Convert.ToInt32(str.Substring(0, str.IndexOf('/')));
-                    int ei = Convert.ToInt32(str.Substring(str.IndexOf('/') + 1));
-                    if ((fi / ei) != Convert.ToInt32(message.YanzhengValue))
-                        return Json(null, false);
-                }
-                messageservice.InsertInto(new Messages
-                {
-                    Message = message.MessageWords,
-                    Friender = message.FriendName
-                });
 
-                Random random = new Random();
-                YIK = Convert.ToInt32(random.Next(0, 3));
-                string str_ = GetCheckImgList()[YIK];
-                return Json(str_, true);
+                return Json(null, true);
             }
             return AjaxJson();
         }
@@ -88,16 +87,16 @@ namespace ShinyBirthday.Web.Controllers
             return Json(messageservice.GetFiveMessage());
         }
 
+        public ActionResult AllLeaveMessages()
+        {
+            int visitorNum = common.GetVisitorvolume(GetClientIp());
+            ShinyInfoView siv = new ShinyInfoView(common.GetShiny(), visitorNum);
+            return View(siv);
+        }
+
         public ActionResult ShowShiny()
         {
             return View();
         }
-
-        public List<string> GetCheckImgList()
-        {
-            List<string> listImgs = new List<string>() { "1+1.png", "2+4.png", "2+8.png", "2X9.png" };
-            return listImgs;
-        }
-
     }
 }

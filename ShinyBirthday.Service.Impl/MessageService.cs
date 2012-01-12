@@ -16,6 +16,11 @@ namespace ShinyBirthday.Service.Impl
 
         public void InsertInto(Messages message)
         {
+            int num = session.Query<Messages>().Where(p => message.Friender.Equals(p.Friender) && message.Message.Equals(p.Message)).Count();
+            if (num > 0)
+            {
+                throw new Exception();
+            }
             session.Save(message);
         }
 
@@ -29,6 +34,11 @@ namespace ShinyBirthday.Service.Impl
                         Name = q.Friender + ":" + q.Message
                     }
                 ).ToList<NameIdView>();
+        }
+
+        public int GetLiveMessageCount()
+        {
+            return session.Query<Messages>().Count();
         }
     }
 }

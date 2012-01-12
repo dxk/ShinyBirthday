@@ -12,5 +12,7 @@ namespace ShinyBirthday.Service
         void InsertInto(Messages message);
 
         List<NameIdView> GetFiveMessage();
+
+        int GetLiveMessageCount();
     }
 }

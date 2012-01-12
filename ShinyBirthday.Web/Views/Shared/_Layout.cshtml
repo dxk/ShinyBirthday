@@ -1,10 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@model ShinyBirthday.Web.Models.Shiny.ShinyInfoView
+<!DOCTYPE html>
 <html>
 <head>
     <title>
         @RenderSection("Title", required: false)
     </title>
     @RenderSection("SiteHead", false)
+    <link rel="shortcut icon" href="../../Content/Images/QTS.ico" type="image/x-icon" />
 </head>
 <!-- js and css -->
 <link rel="stylesheet" media="screen,projection" type="text/css" href="@Url.Content("~/Content/Styles/share.css") " />
@@ -28,31 +30,20 @@
 <script src="@Url.Content("~/Scripts/you-may.jquery.multiupload.js") " type="text/javascript"></script>
 @*<script src="@Url.Content("~/Scripts/jquery.cookie.min.js") " type="text/javascript"></script>*@
 <script src="@Url.Content("~/Scripts/you-may.lib.js") " type="text/javascript"></script>
-<body>
-    <div class="top">
-        <div class="logo">
+<body style="min-width:1000px;">
+    <div class="top" style="min-width: 1000px;">
+        <div class="">
         </div>
         <div class="userBox">
-            <img src="../../Content/Images/user_header.png" style="vertical-align: text-bottom;
-                margin-right: 2px;" />
-            @Html.ActionLink("(定制)", "ShowShiny")
         </div>
         <div class="breadNav">
             @RenderSection("SiteMap", false)
         </div>
     </div>
-    <div class="mainbody">
+    <div class="mainbody" style="min-width:1000px;width: 100%;">
         <table class="tContainer" border="0px" align="center" style="width: 98%; border-collapse: collapse;
-            margin: 0px auto; position: relative; display: block; min-width: 975px;">
+            margin: 0px auto; position: relative; display: block;">
             <tr>
-                @*<td class="hideNav" rowspan="5" valign="top" style="width: 160px;">
-                    <div style="width: 160px; height: 1px;">
-                    </div>
-                </td>
-                <td class="sideBarContainer" rowspan="5" style="width: 12px;" valign="top">
-                    <div class="hideNavBar navBarHide">
-                    </div>
-                </td>*@
                 <td colspan="2" valign="top" style="height: 38px;">
                     <div class="articleTitle">
                         <div class="bg">
@@ -75,11 +66,11 @@
             </tr>
             <tr>
                 <td valign="top" class="articleLt" width="10000px;">
-                    <div style="min-height: 491px;background-image:url(../../Content/Images/ContantBack.jpg)">
+                    <div style="min-height: 491px; background-image: url(../../Content/Images/ContantBack.jpg)">
                         @RenderBody()
                     </div>
                 </td>
-                <td valign="top" class="articleRt" style=" padding-right:2px;">
+                <td valign="top" class="articleRt" style="padding-right: 2px;">
                 </td>
             </tr>
             <tr>
@@ -95,51 +86,34 @@
                 </td>
             </tr>
         </table>
-        <div class="floorTop" style="color:Green;">
-            <marquee behavior="scroll" direction="left" style="padding-top: 20px; margin: 0px 15px"
+        <div class="floorTop" style=" border-collapse: collapse;color: Green;min-width: 1000px;position: relative;">
+            <marquee behavior="scroll" direction="left" style="padding-top: 20px; margin:0px 15px"
                 loop="-1" scrollamount="2" scrolldelay="0" onmouseout="this.start()" onmouseover="this.stop()">
         我们遇见这个人，遇见那个人，却一直想念不该想念的人...
         </marquee>
         </div>
-        <div class="floorText">
+        <div class="floorText" style="border-collapse: collapse;min-width: 1000px;position: relative;">
             <p>
-                <a target="_blank" href="http://user.qzone.qq.com/418493429">访问Shiny的空间</a> | <a target="_blank" href="http://user.qzone.qq.com/418493429">联系Shiny</a>
-                | <a class="serviceLink" href="http://user.qzone.qq.com/653693115">疑问中心</a>
+                <a target="_blank" href="http://user.qzone.qq.com/418493429">访问Shiny的空间</a> | <a
+                    target="_blank" href="http://user.qzone.qq.com/418493429">联系Shiny</a> | <a class="serviceLink"
+                        href="http://user.qzone.qq.com/653693115">疑问中心</a> &nbsp;&nbsp;&nbsp;访问量：
+                @{
+                    var img4 = (Model.Visitorvolume % 10).ToString()+".png";
+                    var img3 = (Model.Visitorvolume % 100 / 10).ToString() + ".png";
+                    var img2 = (Model.Visitorvolume % 1000 / 100).ToString() + ".png";
+                    var img1 = (Model.Visitorvolume / 1000).ToString() + ".png";
+                }
+                <img src="../../Content/Images/Num/red_num_0 @img1" alt="烦请互相传达，为.鲜艳.祝福吧~" style="width: 10px;
+                    height: 15px; padding: 0 0 0 0; margin: 0 0 0 0; position: absolute;" />
+                <img src="../../Content/Images/Num/red_num_0 @img2" alt="烦请互相传达，为.鲜艳.祝福吧~" style="width: 10px;
+                    height: 15px; padding: 0 0 0 8px; margin: 0 0 0 0; position: absolute;" />
+                <img src="../../Content/Images/Num/red_num_0 @img3" alt="烦请互相传达，为.鲜艳.祝福吧~" style="width: 10px;
+                    height: 15px; padding: 0 0 0 16px; margin: 0 0 0 0; position: absolute;" />
+                <img src="../../Content/Images/Num/red_num_0 @img4" alt="烦请互相传达，为.鲜艳.祝福吧~" style="width: 10px;
+                    height: 15px; padding: 0 0 0 24px; margin: 0 0 0 0; position: absolute;" />
             </p>
             <p>
                 Copyright © 2011-2012 Desting. All Rights Reserved. 鄂ICP备13143344号-N</p>
-        </div>
-        <div class="service" style="display: none; overflow-y: hidden">
-            <table>
-                <tr>
-                    <th style="width: 405px;">
-                        广州富士通办事处地图
-                    </th>
-                    <th>
-                        广州富士通各种产品的联络方法
-                    </th>
-                </tr>
-                <tr>
-                    <td rowspan="3">
-                        @Html.Image("map.jpg")
-                    </td>
-                    <td valign="top">
-                        <p>
-                            联系方式：富士通(中国)信息系统有限公司 广州分公司</p>
-                        <p>
-                            地址：广州市天河北路28号 时代广场中座1103室</p>
-                        <p>
-                            邮编：510620</p>
-                        <p>
-                            联系电话：+86-20-6684-1888</p>
-                        <p>
-                            传真号码：+86-20-6684-1881</p>
-                        <p>
-                            联系电邮：FCSS@homs-fujitsu.com
-                        </p>
-                    </td>
-                </tr>
-            </table>
         </div>
     </div>
 </body>

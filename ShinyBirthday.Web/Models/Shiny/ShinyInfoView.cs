@@ -9,13 +9,13 @@ namespace ShinyBirthday.Web.Models.Shiny
     public class ShinyInfoView
     {
         public ShinyInfoView() { }
-        public ShinyInfoView(ShinyInformation shiny, string yanzhengImg)
+        public ShinyInfoView(ShinyInformation shiny, int visitorvolume)
         {
             Id = shiny.Id;
             Name = shiny.Name;
             Age = shiny.Age;
             Hobby = shiny.Hobby;
-            YanzhengImg = yanzhengImg;
+            Visitorvolume = visitorvolume;
         }
         public int Id { get; set; }
 
@@ -25,6 +25,7 @@ namespace ShinyBirthday.Web.Models.Shiny
 
         public string Hobby { get; set; }
 
-        public string YanzhengImg { get; set; }
+        //
+        public int Visitorvolume { get; set; }
     }
 }

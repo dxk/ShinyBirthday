@@ -75,7 +75,7 @@ body{
 
 .top{
 	background:black url(../images/top_bg.png) repeat-x ;
-	padding:10px 0px;
+	padding:6px 0px;
 	margin-bottom:13px;
 	height:61px;
 	position:relative;
@@ -101,7 +101,7 @@ body{
 }
 
 .userBox{
-	height:50px;
+	height:30px;
 	text-align:right;
 	padding:0px 20px;
 }
