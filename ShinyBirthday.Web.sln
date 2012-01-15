@@ -11,7 +11,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShinyBirthday.Mapping", "Sh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShinyBirthday.Entity", "ShinyBirthday.Entity\ShinyBirthday.Entity.csproj", "{AE623016-A6B4-4633-99CE-D1475677E850}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{46299B3D-6674-495F-B749-7FC12D23F805}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6EF378E5-D312-4025-A8D6-AE3A74DDE8A9}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		ShinyBirthday.Web.vsmdi = ShinyBirthday.Web.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = ShinyBirthday.Web.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -37,6 +49,10 @@ Global
 		{AE623016-A6B4-4633-99CE-D1475677E850}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE623016-A6B4-4633-99CE-D1475677E850}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE623016-A6B4-4633-99CE-D1475677E850}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46299B3D-6674-495F-B749-7FC12D23F805}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46299B3D-6674-495F-B749-7FC12D23F805}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46299B3D-6674-495F-B749-7FC12D23F805}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46299B3D-6674-495F-B749-7FC12D23F805}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

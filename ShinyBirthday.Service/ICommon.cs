@@ -9,5 +9,8 @@ namespace ShinyBirthday.Service
     public interface ICommon
     {
         ShinyInformation GetShiny();
+
+        int GetVisitorvolume(string ip);
+
     }
 }

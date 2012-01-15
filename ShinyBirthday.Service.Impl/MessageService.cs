@@ -16,19 +16,29 @@ namespace ShinyBirthday.Service.Impl
 
         public void InsertInto(Messages message)
         {
+            int num = session.Query<Messages>().Where(p => message.Friender.Equals(p.Friender) && message.Message.Equals(p.Message)).Count();
+            if (num > 0)
+            {
+                throw new Exception();
+            }
             session.Save(message);
         }
 
         public List<NameIdView> GetFiveMessage()
         {
             var query = session.Query<Messages>().ToList();
-            return query.Skip(query.Count - 5).Take(5).Select(q =>
+            return query.Skip(query.Count - 9).Take(9).Select(q =>
                  new NameIdView
                     {
                         Id = q.Id,
                         Name = q.Friender + ":" + q.Message
                     }
                 ).ToList<NameIdView>();
+        }
+
+        public int GetLiveMessageCount()
+        {
+            return session.Query<Messages>().Count();
         }
     }
 }

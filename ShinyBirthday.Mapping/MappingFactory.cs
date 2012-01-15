@@ -22,7 +22,9 @@ namespace EntityMapping
             //实体表们
             var entities = new[]{
                 typeof(ShinyInformation),
-                typeof(Messages)
+                typeof(Messages),
+                typeof(SystemTable),
+                typeof(IpAddress)
             };
             orm.TablePerClass(entities);
             var mappr = new Mapper(orm, new CoolPatternsAppliersHolder(orm));
