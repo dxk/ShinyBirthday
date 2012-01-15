@@ -1690,6 +1690,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shiny\ShowShiny.cshtml" />
+    <Content Include="Views\Shiny\Js.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShinyBirthday.Entity\ShinyBirthday.Entity.csproj">
