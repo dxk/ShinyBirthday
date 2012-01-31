@@ -280,7 +280,6 @@
     <Content Include="Content\ImgWall\js\jquery.masonry.min.js" />
     <Content Include="Content\ImgWall\js\jquery.min.js" />
     <Content Include="Content\ImgWall\readme.html" />
-    <Content Include="Content\ImgWall\懒人图库.txt" />
     <Content Include="Content\Plugins\ewebeditor\admin\default.aspx" />
     <Content Include="Content\Plugins\ewebeditor\admin\images\1_12.gif" />
     <Content Include="Content\Plugins\ewebeditor\admin\images\1_13.gif" />
