@@ -40,5 +40,18 @@ namespace ShinyBirthday.Service.Impl
         {
             return session.Query<Messages>().Count();
         }
+
+
+        public List<NameIdView> GetMessagesByPage(int pageNum, int count)
+        {
+            var query = session.Query<Messages>().ToList();
+            return query.Skip(pageNum * count).Take(count).Select(q =>
+                    new NameIdView
+                    {
+                        Id = q.Id,
+                        Name = q.Friender + ":" + q.Message
+                    }
+                ).ToList<NameIdView>();
+        }
     }
 }

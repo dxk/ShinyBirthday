@@ -87,11 +87,16 @@ namespace ShinyBirthday.Web.Controllers
             return Json(messageservice.GetFiveMessage());
         }
 
-        public ActionResult AllLeaveMessages()
+        public ActionResult ShinyImgs()
         {
             int visitorNum = common.GetVisitorvolume(GetClientIp());
             ShinyInfoView siv = new ShinyInfoView(common.GetShiny(), visitorNum);
             return View(siv);
+        }
+
+        public ActionResult AllMessages()
+        {
+            return Json(messageservice.GetMessagesByPage(0, 10));
         }
 
         public ActionResult ShowShiny()

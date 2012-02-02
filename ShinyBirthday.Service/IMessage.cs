@@ -14,5 +14,7 @@ namespace ShinyBirthday.Service
         List<NameIdView> GetFiveMessage();
 
         int GetLiveMessageCount();
+
+        List<NameIdView> GetMessagesByPage(int pageNum,int count);
     }
 }
