@@ -42,16 +42,23 @@ namespace ShinyBirthday.Service.Impl
         }
 
 
-        public List<NameIdView> GetMessagesByPage(int pageNum, int count)
+        public List<Messages> GetMessagesByPage(int pageNum, int count,out int pageNos)
         {
             var query = session.Query<Messages>().ToList();
+            if (query.Count % count > 0)
+                pageNos = query.Count / count + 1;
+            else
+                pageNos = query.Count / count;
             return query.Skip(pageNum * count).Take(count).Select(q =>
-                    new NameIdView
+                    new Messages
                     {
                         Id = q.Id,
-                        Name = q.Friender + ":" + q.Message
+                        Message = q.Message,
+                        Qq = q.Qq,
+                        Truename = q.Truename,
+                        Friender = q.Friender
                     }
-                ).ToList<NameIdView>();
+                ).ToList<Messages>();
         }
     }
 }

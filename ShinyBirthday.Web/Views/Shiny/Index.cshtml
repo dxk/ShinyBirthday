@@ -115,7 +115,7 @@ Shiny
                 }
                 $("#addissuetag").fadeTo(1000, 0.8);
             } else
-                alert("请先填写您的真实信息，真实信息只有.鲜艳.看的到哦！");
+                alert("请先填写您的真实信息，真实信息只有.鲜艳.看的到哦！(或者需要点击保证真实按钮)");
         }
 
         var ifConfirmTrue = false;
@@ -138,7 +138,8 @@ Shiny
 }
 @section SiteMap{
     @*@Model.Name @Model.Id @Model.Age @Model.Hobby*@
-    @Html.ActionLink("照片墙", "AllLeaveMessages", "Shiny")
+    @Html.ActionLink("照片墙", "ShinyImgs", "Shiny")
+    <a href="../Shiny/AllMessages?pageNum=0">所有留言</a>
 }
 @section SitePageName{
     @{

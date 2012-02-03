@@ -18,5 +18,11 @@ namespace ShinyBirthday.Web.Models.Shiny
 
         [Required, StringLength(5)]
         public string YanzhengValue { get; set; }
+
+        [Required,StringLength(20)]
+        public string FriendRelayName { get; set; }
+
+        [Required,StringLength(20)]
+        public string FriendQQ { get; set; }
     }
 }

@@ -134,6 +134,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Shiny\AddMessageForm.cs" />
+    <Compile Include="Models\Shiny\AllMessageViewModel.cs" />
     <Compile Include="Models\Shiny\MessageView.cs" />
     <Compile Include="Models\Shiny\ShinyInfoView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1531,6 +1532,7 @@
     <Content Include="Views\Shiny\ShowShiny.cshtml" />
     <Content Include="Views\Shiny\ShinyImgs.cshtml" />
     <Content Include="Views\Shiny\AllMessages.cshtml" />
+    <Content Include="Views\Shiny\Js.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShinyBirthday.Entity\ShinyBirthday.Entity.csproj">

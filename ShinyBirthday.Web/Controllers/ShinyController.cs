@@ -69,7 +69,9 @@ namespace ShinyBirthday.Web.Controllers
                     messageservice.InsertInto(new Messages
                     {
                         Message = message.MessageWords,
-                        Friender = message.FriendName
+                        Friender = message.FriendName,
+                        Qq = message.FriendQQ,
+                        Truename = message.FriendRelayName
                     });
                 }
                 catch (Exception)
@@ -94,9 +96,19 @@ namespace ShinyBirthday.Web.Controllers
             return View(siv);
         }
 
-        public ActionResult AllMessages()
+        public ActionResult AllMessages(int pageNum)
         {
-            return Json(messageservice.GetMessagesByPage(0, 10));
+            int pn = 1;
+            int sc = 20;
+            int pageNos = 0;
+            if (pageNum != null)
+                pn = pageNum;
+            List<Messages> list = messageservice.GetMessagesByPage(pn, sc, out pageNos);
+            return View(new AllMessageViewModel()
+            {
+                ListMessage = list,
+                PageNos = pageNos
+            });
         }
 
         public ActionResult ShowShiny()

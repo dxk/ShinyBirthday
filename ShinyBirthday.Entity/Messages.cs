@@ -12,5 +12,9 @@ namespace ShinyBirthday.Entity
         public virtual string Message { get; set; }
 
         public virtual string Friender { get; set; }
+
+        public virtual string Truename { get; set; }
+
+        public virtual string Qq { get; set; }
     }
 }
