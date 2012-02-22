@@ -71,7 +71,8 @@ namespace ShinyBirthday.Web.Controllers
                         Message = message.MessageWords,
                         Friender = message.FriendName,
                         Qq = message.FriendQQ,
-                        Truename = message.FriendRelayName
+                        Truename = message.FriendRelayName,
+                        Usable = 1
                     });
                 }
                 catch (Exception)
@@ -98,16 +99,14 @@ namespace ShinyBirthday.Web.Controllers
 
         public ActionResult AllMessages(int pageNum)
         {
-            int pn = 1;
             int sc = 20;
             int pageNos = 0;
-            if (pageNum != null)
-                pn = pageNum;
-            List<Messages> list = messageservice.GetMessagesByPage(pn, sc, out pageNos);
+            List<Messages> list = messageservice.GetMessagesByPage(pageNum, sc, out pageNos);
             return View(new AllMessageViewModel()
             {
                 ListMessage = list,
-                PageNos = pageNos
+                PageNos = pageNos,
+                CurrentPagenum = pageNum
             });
         }
 
@@ -115,5 +114,32 @@ namespace ShinyBirthday.Web.Controllers
         {
             return View();
         }
+
+        //-----------
+        public ActionResult MyLoveXY(int pageNum)
+        {
+            int sc = 20;
+            int pageNos = 0;
+            List<Messages> list = messageservice.GLYGetMessagesByPage(pageNum, sc, out pageNos);
+            return View(new AllMessageViewModel()
+            {
+                ListMessage = list,
+                PageNos = pageNos,
+                CurrentPagenum = pageNum
+            });
+        }
+
+        public ActionResult DisableMessage(int id, int pageNum)
+        {
+            messageservice.GLYDelete(id, false);
+            return RedirectToAction("MyLoveXY", new { pageNum = pageNum });
+        }
+
+        public ActionResult EnableMessage(int id, int pageNum)
+        {
+            messageservice.GLYDelete(id, true);
+            return RedirectToAction("MyLoveXY", new { pageNum = pageNum });
+        }
+
     }
 }

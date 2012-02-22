@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "";
+}
+@model ShinyBirthday.Web.Models.Shiny.AllMessageViewModel
+<div style="">
+    @{
+        var i = 0;
+        foreach (var item in Model.ListMessage)
+        {
+            i++;
+        <span>@i , @item.Friender @item.Truename @item.Qq</span>
+        <span>@item.Message </span>
+            if (item.Usable == 1)
+            {
+        <a href="../Shiny/DisableMessage?id=@item.Id&pageNum=@Model.CurrentPagenum">禁止</a>
+            }
+            else
+            {
+        <a href="../Shiny/DisableMessage?id=@item.Id&pageNum=@Model.CurrentPagenum">显示</a>
+            }
+        <br />
+        }
+    }
+    @{
+        int pi_ = 1;
+        for (int pi = 0; pi < Model.PageNos; pi++)
+        {
+            if (pi == Model.CurrentPagenum)
+            {
+        <a href="../Shiny/MyLoveXY?pageNum=@pi" style="color:Red;">-@pi_ </a>
+            }
+            else
+            {
+        <a href="../Shiny/MyLoveXY?pageNum=@pi">-@pi_ </a>
+            }
+            pi_ = pi_ + 1;
+        }
+    }
+</div>

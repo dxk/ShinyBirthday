@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "";
+}
+@model ShinyBirthday.Web.Models.Shiny.AllMessageViewModel
+<div style="">
+    @{
+        var i = 0;
+        foreach (var item in Model.ListMessage)
+        {
+            i++;
+        <span>@i , @item.Friender </span>
+        <span>@item.Message </span>
+        <br />
+        }
+    }
+    @{
+        int pi_ = 1;
+        for (int pi = 0; pi < Model.PageNos; pi++)
+        {
+            if (pi == Model.CurrentPagenum)
+            {
+        <a href="../Shiny/AllMessages?pageNum=@pi" style="color:Red;">-@pi_ </a>
+            }
+            else
+            {
+        <a href="../Shiny/AllMessages?pageNum=@pi">-@pi_ </a>
+            }
+            pi_ = pi_ + 1;
+        }
+    }
+</div>

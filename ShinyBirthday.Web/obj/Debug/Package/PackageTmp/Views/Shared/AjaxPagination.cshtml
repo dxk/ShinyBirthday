@@ -1,0 +1,175 @@
+﻿@model CommonPaginationViewModel
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".pagination a").click(function () {
+            var self = $(this);
+            var url = self.attr("href");
+
+            $.ajax({
+                url: url,
+                dataType: "html",
+                success: function (data) {
+                    var targetSelector = '@Model.TargetSelector ';
+                    if (targetSelector) {
+                        $(targetSelector).html(data);
+                    } else {
+                        $("#PaginationList").html(data);
+                    }
+                    //                    var dataArea = self.closest(".data-area");
+                    //                    dataArea.html(data);
+                }
+            });
+            return false;
+        });
+    });
+
+    $(".pagination select[name=PageNumber]").change(function () {
+        var self = $(this);
+        var pageNum = self.val();
+        var url = '@Html.Raw(Url.ModelStateAction(ViewData.ModelState, Model.ActionName, Model.ControllerName, new { PageNumber = "", PageSize = Model.PageSize }))';
+        if (url.indexOf("?") == -1) {
+            url = url + "?PageNumber=" + pageNum;
+        } else {
+            url = url + "&PageNumber=" + pageNum;
+        }
+        $.ajax({
+            url: url,
+            dataType: "html",
+            success: function (data) {
+                var targetSelector = '@Model.TargetSelector ';
+                if (targetSelector) {
+                    $(targetSelector).html(data);
+                } else {
+                    $("#PaginationList").html(data);
+                }
+            }
+        });
+    });
+    $("#ddlDisplayCount").change(function () {
+        $.ajax({
+            url: $(this).val(),
+            dataType: "html",
+            success: function (data) {
+                var targetSelector = '@Model.TargetSelector ';
+                if (targetSelector) {
+                    $(targetSelector).html(data);
+                } else {
+                    $("#PaginationList").html(data);
+                }
+            }
+        });
+    });
+</script>
+<div class="pagination">
+<div class="pagination-left">
+        <dl>
+            @Html.PaginationLink(" ", Model.ActionName, Model.ControllerName, new { PageNumber = 1 }, new { @class = "pagination-first", title = FCSSResource.First })
+            @if (Model.HasPreviousPage)
+            {
+                @Html.PaginationLink(" ", Model.ActionName, Model.ControllerName, new { PageNumber = Model.PageNumber - 1 }, new { @class = "pagination-prev", title = FCSSResource.Prev })
+            }
+            else
+            { 
+                <a href="javascript:void(0)" disabled="true" class="pagination-prev" title="@FCSSResource.Prev" style="color: #aaa">
+                </a>
+            }
+        </dl>
+        <dl>
+            @{
+                if (Model.PageNumber < 5)
+                {
+                    for (var i = 1; i <= 5; i++)
+                    {
+                        if (i <= Model.TotalPages)
+                        {
+                            if (i != Model.PageNumber)
+                            {
+                @Html.PaginationLink(i.ToString(), Model.ActionName, Model.ControllerName, new { PageNumber = i }, new { @class = "number" })
+                            }
+                            else
+                            {
+                @Html.PaginationLink(i.ToString(), Model.ActionName, Model.ControllerName, new { PageNumber = i }, new { @class = "number current" })
+                            }
+                        }
+                    }
+                }
+                else if (Model.PageNumber + 4 > Model.TotalPages)
+                {
+                    for (var i = Model.TotalPages - 4; i <= Model.TotalPages; i++)
+                    {
+                        if (i > 0)
+                        {
+                            if (i != Model.PageNumber)
+                            {
+                @Html.PaginationLink(i.ToString(), Model.ActionName, Model.ControllerName, new { PageNumber = i }, new { @class = "number" })
+                            }
+                            else
+                            {
+                @Html.PaginationLink(i.ToString(), Model.ActionName, Model.ControllerName, new { PageNumber = i }, new { @class = "number current" })
+                            }
+                        }
+                    }
+                }
+                else
+                {
+
+                    for (var i = Model.PageNumber - 2; i <= Model.PageNumber + 2; i++)
+                    {
+                        if (i > 0 && i <= Model.TotalPages)
+                        {
+                            if (i != Model.PageNumber)
+                            {
+                @Html.PaginationLink(i.ToString(), Model.ActionName, Model.ControllerName, new { PageNumber = i }, new { @class = "number" })
+                            }
+                            else
+                            {
+                @Html.PaginationLink(i.ToString(), Model.ActionName, Model.ControllerName, new { PageNumber = i }, new { @class = "number current" })
+                            }
+                        }
+                    }
+                }
+            }
+            @if (Model.PageNumber + 4 <= Model.TotalPages && Model.TotalPages > 5)
+            {
+                <span>. . .</span>@Html.PaginationLink(Model.TotalPages.ToString(), Model.ActionName, Model.ControllerName, new { PageNumber = Model.TotalPages }, new { @class = "number" })
+            }
+            else if (Model.PageNumber + 2 <= Model.TotalPages && Model.TotalPages < 7 && Model.TotalPages > 5)
+            {
+                <span>. . .</span>@Html.PaginationLink(Model.TotalPages.ToString(), Model.ActionName, Model.ControllerName, new { PageNumber = Model.TotalPages }, new { @class = "number" })
+            }
+            @Html.DropDownList("PageNumber", Model.ListPageNumbers, new { style = "font-size:10px; width:45px; height:20px; margin:0px 0px 0px 3px; padding:0px; vertical-align:baseline;" })
+        </dl>
+        <dl style="padding-left:3px;">
+            @if (Model.HasNextPage)
+            {
+                @Html.PaginationLink(" ", Model.ActionName, Model.ControllerName, new { PageNumber = Model.PageNumber + 1 }, new { @class = "pagination-next", title = FCSSResource.Next })
+            }
+            else
+            { 
+                <a href="javascript:void(0)" disabled="true" class="pagination-next" title="@FCSSResource.Next" style="color: #aaa">
+                </a>
+            }
+            @Html.PaginationLink(" ", Model.ActionName, Model.ControllerName, new { PageNumber = Model.TotalPages }, new { @class = "pagination-last", title = FCSSResource.Last })
+        </dl>
+    </div>
+    <div class="pagination-right">
+        @FCSSResource.TotalData：@Model.TotalCount &nbsp;&nbsp;
+        @FCSSResource.PagingSet：
+        <select id="ddlDisplayCount" style="font-size: 10px; width: 45px; height: 20px; padding: 0px;
+            margin: 0px; vertical-align: baseline;">
+            @foreach (var pageSize in Model.PageSizes)
+            {
+                if (Model.PageSize == pageSize)
+                {
+                <option selected="selected" value="@Url.ModelStateAction(ViewData.ModelState, Model.ActionName, Model.ControllerName, new { PageNumber = Model.PageNumber, PageSize = pageSize })">
+                    @pageSize</option>
+                }
+                else
+                { 
+                <option value="@Url.ModelStateAction(ViewData.ModelState, Model.ActionName, Model.ControllerName, new { PageNumber = Model.PageNumber, PageSize = pageSize })">
+                    @pageSize</option>
+                }
+            }
+        </select>
+    </div>
+</div>

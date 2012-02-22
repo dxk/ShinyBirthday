@@ -16,5 +16,7 @@ namespace ShinyBirthday.Entity
         public virtual string Truename { get; set; }
 
         public virtual string Qq { get; set; }
+
+        public virtual int Usable { get; set; }
     }
 }

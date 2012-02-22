@@ -16,5 +16,14 @@ namespace ShinyBirthday.Service
         int GetLiveMessageCount();
 
         List<Messages> GetMessagesByPage(int pageNum,int count,out int pageNos);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="bo">True 就是显示/False 就是不显示</param>
+        void GLYDelete(int id,bool bo);
+
+        List<Messages> GLYGetMessagesByPage(int pageNum, int count, out int pageNos);
     }
 }

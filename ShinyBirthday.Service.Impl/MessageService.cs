@@ -14,6 +14,7 @@ namespace ShinyBirthday.Service.Impl
     {
         ISession session = GetSession.getSession();
 
+        #region 非管理员
         public void InsertInto(Messages message)
         {
             int num = session.Query<Messages>().Where(p => message.Friender.Equals(p.Friender) && message.Message.Equals(p.Message)).Count();
@@ -26,7 +27,7 @@ namespace ShinyBirthday.Service.Impl
 
         public List<NameIdView> GetFiveMessage()
         {
-            var query = session.Query<Messages>().ToList();
+            var query = session.Query<Messages>().Where(p => p.Usable == 1).ToList();
             return query.Skip(query.Count - 9).Take(9).Select(q =>
                  new NameIdView
                     {
@@ -38,13 +39,12 @@ namespace ShinyBirthday.Service.Impl
 
         public int GetLiveMessageCount()
         {
-            return session.Query<Messages>().Count();
+            return session.Query<Messages>().Where(p => p.Usable == 1).Count();
         }
 
-
-        public List<Messages> GetMessagesByPage(int pageNum, int count,out int pageNos)
+        public List<Messages> GetMessagesByPage(int pageNum, int count, out int pageNos)
         {
-            var query = session.Query<Messages>().ToList();
+            var query = session.Query<Messages>().Where(p => p.Usable == 1).ToList();
             if (query.Count % count > 0)
                 pageNos = query.Count / count + 1;
             else
@@ -60,5 +60,42 @@ namespace ShinyBirthday.Service.Impl
                     }
                 ).ToList<Messages>();
         }
+        #endregion
+
+        #region 管理员
+        public void GLYDelete(int id, bool bo)
+        {
+            Messages message = session.Get<Messages>(id);
+            if (message != null)
+            {
+                if (bo)
+                    message.Usable = 1;
+                else
+                    message.Usable = 0;
+                session.SaveOrUpdate(message);
+                session.Flush();
+            }
+        }
+
+        public List<Messages> GLYGetMessagesByPage(int pageNum, int count, out int pageNos)
+        {
+            var query = session.Query<Messages>().ToList();
+            if (query.Count % count > 0)
+                pageNos = query.Count / count + 1;
+            else
+                pageNos = query.Count / count;
+            return query.Skip(pageNum * count).Take(count).Select(q =>
+                    new Messages
+                    {
+                        Id = q.Id,
+                        Message = q.Message,
+                        Qq = q.Qq,
+                        Truename = q.Truename,
+                        Friender = q.Friender,
+                        Usable = q.Usable
+                    }
+                ).ToList<Messages>();
+        }
+        #endregion
     }
 }

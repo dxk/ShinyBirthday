@@ -11,5 +11,7 @@ namespace ShinyBirthday.Web.Models.Shiny
         public List<Messages> ListMessage { get; set; }
 
         public int PageNos { get; set; }
+
+        public int CurrentPagenum { get; set; }
     }
 }

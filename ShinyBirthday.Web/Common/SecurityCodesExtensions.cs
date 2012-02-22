@@ -22,7 +22,7 @@ namespace ShinyBirthday.Web.Common
 
             var img = new TagBuilder("img");
             img.MergeAttribute("src", contextUrl.Action("GetCode", "SecurityCode"));
-            img.MergeAttribute("style", "width: 50px; height: 16px; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px;position: absolute;");
+            img.MergeAttribute("style", "width: 50px; height: 18px; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px;position: ;");
             img.MergeAttribute("onclick", "javascript:_Click_SecurityCode_GetNewCode_2011_4_6_17_36();");
             img.MergeAttribute("alt", "点击更换:该验证码只有(+)加(-)减(x)乘运算");
 
