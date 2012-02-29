@@ -25,3 +25,17 @@ D:\Projects\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\NHibernate.xml
 D:\Projects\ShinyBirthday\ShinyBirthday.Mapping\obj\Debug\ResolveAssemblyReference.cache
 D:\Projects\ShinyBirthday\ShinyBirthday.Mapping\obj\Debug\ShinyBirthday.Mapping.dll
 D:\Projects\ShinyBirthday\ShinyBirthday.Mapping\obj\Debug\ShinyBirthday.Mapping.pdb
+D:\Project\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\ShinyBirthday.Mapping.dll
+D:\Project\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\ShinyBirthday.Mapping.pdb
+D:\Project\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\ConfOrm.dll
+D:\Project\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\ConfOrm.Shop.dll
+D:\Project\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\Iesi.Collections.dll
+D:\Project\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\MySql.Data.dll
+D:\Project\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\NHibernate.dll
+D:\Project\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\ShinyBirthday.Entity.dll
+D:\Project\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\ShinyBirthday.Entity.pdb
+D:\Project\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\Iesi.Collections.xml
+D:\Project\ShinyBirthday\ShinyBirthday.Mapping\bin\Debug\NHibernate.xml
+D:\Project\ShinyBirthday\ShinyBirthday.Mapping\obj\Debug\ResolveAssemblyReference.cache
+D:\Project\ShinyBirthday\ShinyBirthday.Mapping\obj\Debug\ShinyBirthday.Mapping.dll
+D:\Project\ShinyBirthday\ShinyBirthday.Mapping\obj\Debug\ShinyBirthday.Mapping.pdb
