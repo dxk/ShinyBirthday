@@ -27,7 +27,8 @@ namespace ShinyBirthday.Web.Controllers
         public ActionResult Index()
         {
             int visitorNum = common.GetVisitorvolume(GetClientIp());
-            ShinyInfoView siv = new ShinyInfoView(common.GetShiny(), visitorNum);
+            List<string> listTops = common.GetTitles().Select(p => p.Message).ToList();
+            ShinyInfoView siv = new ShinyInfoView(common.GetShiny(), visitorNum, listTops);
             return View(siv);
         }
 
@@ -92,14 +93,14 @@ namespace ShinyBirthday.Web.Controllers
 
         public ActionResult ShinyImgs()
         {
-            int visitorNum = common.GetVisitorvolume(GetClientIp());
-            ShinyInfoView siv = new ShinyInfoView(common.GetShiny(), visitorNum);
-            return View(siv);
+            //int visitorNum = common.GetVisitorvolume(GetClientIp());
+            //ShinyInfoView siv = new ShinyInfoView(common.GetShiny(), visitorNum);
+            return View();
         }
 
         public ActionResult AllMessages(int pageNum)
         {
-            int sc = 20;
+            int sc = 10;
             int pageNos = 0;
             List<Messages> list = messageservice.GetMessagesByPage(pageNum, sc, out pageNos);
             return View(new AllMessageViewModel()
@@ -115,14 +116,31 @@ namespace ShinyBirthday.Web.Controllers
             return View();
         }
 
+        public ActionResult AddTopMessage(AddTopMessage atm)
+        {
+            if (atm.TopMessage.Length > 16)
+                return RedirectToAction("Index");
+            TopTitle tt = new TopTitle();
+            tt.Message = atm.TopMessage;
+            tt.Identity = atm.TopIdentity;
+            tt.Leavetime = DateTime.Now;
+            tt.Enable = 0;
+            tt.Color = "white";
+
+            common.AddTitles(tt);
+            return RedirectToAction("Index");
+        }
+
         //-----------
         public ActionResult MyLoveXY(int pageNum)
         {
             int sc = 20;
             int pageNos = 0;
             List<Messages> list = messageservice.GLYGetMessagesByPage(pageNum, sc, out pageNos);
+            List<TopTitle> listTops = common.GetAllTitles();
             return View(new AllMessageViewModel()
             {
+                ListTops = listTops,
                 ListMessage = list,
                 PageNos = pageNos,
                 CurrentPagenum = pageNum
@@ -141,5 +159,16 @@ namespace ShinyBirthday.Web.Controllers
             return RedirectToAction("MyLoveXY", new { pageNum = pageNum });
         }
 
+        public ActionResult DisableTopMessage(int id)
+        {
+            common.GLYDeleteTops(id, false);
+            return RedirectToAction("MyLoveXY", new { pageNum = 0 });
+        }
+
+        public ActionResult EnableTopMessage(int id)
+        {
+            common.GLYDeleteTops(id, true);
+            return RedirectToAction("MyLoveXY", new { pageNum = 0 });
+        }
     }
 }

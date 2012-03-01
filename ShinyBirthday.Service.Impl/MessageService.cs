@@ -22,6 +22,7 @@ namespace ShinyBirthday.Service.Impl
             {
                 throw new Exception();
             }
+            message.Leavetime = DateTime.Now;
             session.Save(message);
         }
 
@@ -54,9 +55,10 @@ namespace ShinyBirthday.Service.Impl
                     {
                         Id = q.Id,
                         Message = q.Message,
-                        Qq = q.Qq,
-                        Truename = q.Truename,
-                        Friender = q.Friender
+                        //Qq = q.Qq,
+                        //Truename = q.Truename,
+                        Friender = q.Friender,
+                        Leavetime = q.Leavetime
                     }
                 ).ToList<Messages>();
         }
@@ -92,6 +94,7 @@ namespace ShinyBirthday.Service.Impl
                         Qq = q.Qq,
                         Truename = q.Truename,
                         Friender = q.Friender,
+                        Leavetime = q.Leavetime,
                         Usable = q.Usable
                     }
                 ).ToList<Messages>();

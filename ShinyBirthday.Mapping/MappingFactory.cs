@@ -24,7 +24,8 @@ namespace EntityMapping
                 typeof(ShinyInformation),
                 typeof(Messages),
                 typeof(SystemTable),
-                typeof(IpAddress)
+                typeof(IpAddress),
+                typeof(TopTitle)
             };
             orm.TablePerClass(entities);
             var mappr = new Mapper(orm, new CoolPatternsAppliersHolder(orm));

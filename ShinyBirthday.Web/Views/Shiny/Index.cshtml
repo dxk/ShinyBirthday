@@ -62,8 +62,7 @@ Shiny
         }
     </script>
     <script type="text/javascript">
-        var timer = window.setInterval(ReloadTags, 5000);
-
+        var timer = window.setInterval(ReloadTags, 30000);
         function ReloadTags() {
             _Click_SecurityCode_GetNewCode_2012_1_8_19_46();
             $.ajax({
@@ -137,16 +136,29 @@ Shiny
     </script>
 }
 @section SiteMap{
-    @*@Model.Name @Model.Id @Model.Age @Model.Hobby*@
-    @Html.ActionLink("照片墙", "ShinyImgs", "Shiny")
-    <a href="../Shiny/AllMessages?pageNum=0" title="点击查看所有留言">所有留言</a>
 }
 @section SitePageName{
     @{
         var abc = Html.TrificImg();
-        @Html.Raw(abc); <span style="margin: 0 0 0 0px;"> <a href="#">尽情的祝福吧...</a></span>
+        @Html.Raw(abc); <span style="margin: 0 0 0 0px;"> <a href="javascript:$('#FriendName').focus();">
+            尽情的祝福吧...</a></span>
+        @Html.ActionLink("照片墙", "ShinyImgs", "Shiny")
+        <a href="../Shiny/AllMessages?pageNum=0" title="点击查看所有留言">所有留言</a>
     }
 }
+<div id="AddTopMessageDiv" style="position: absolute; top: -80px; left: 960px; display: none;
+    width: 170px; height: 71px; background-color:#D4C38D; padding:10px 10px 10px 10px;
+     -webkit-mask-box-image:-webkit-linear-gradient( rgba(0, 0, 0, 0) , rgba(0, 0, 0, 0) , rgba(0, 0, 0, 0.9) 2%);
+     border-radius:5px;
+     -webkit-transition-delay:0, .15s, .15s, 0;">
+    @using (Html.BeginForm("AddTopMessage", "Shiny", FormMethod.Post, new { id = "AddTopMessage" }))
+    {
+        <input type="text" name="TopIdentity" id="TopIdentity" title="你是谁？你的QQ？可以证明你身份的标识？" />
+        <input type="text" style="height:30px;" name="TopMessage" id="TopMessage" title="你想说的话..(仅限15个字，超过了将不会处理。)" /><br />
+        <input type="submit" onclick="javascript:$('#AddTopMessageDiv').hide(500);" id="addtopmessagebtn" name="addtopmessagebtn" value="提交" style="cursor: pointer;" />
+        <input type="button" onclick="javascript:$('#AddTopMessageDiv').hide(500);" id="canceladdtopmessagebtn" name="canceladdtopmessagebtn" value="取消" style="cursor: pointer;" />
+    }
+</div>
 <!-- 错误消息 -->
 <div id="ErrorInformation" style="display: none; font-size: 30px; position: absolute;
     left: 82.5%; top: 470px; z-index: 10;">
@@ -154,7 +166,7 @@ Shiny
 <br />
 <!-- 朋友的留言 -->
 <div id="tickerContainer" title="最新10条留言" style="text-align: left; margin-top: 0;
-    position: absolute; left: 25px;">
+    position: absolute; left: 25px; border-radius:5px;">
     <dl id="ticker" style="width: 250px; height: 455px; border: 0px solid #D7D4C1; overflow: auto;">
         <dt class="ticker_dt" id="dt_1">Love is now or never... </dt>
         <dd class="ticker_dd" id="dd_1">
@@ -217,9 +229,9 @@ Shiny
 {
     var str = Html.SecurityCodes("SCode");
     
-    <div id="TrueMessageDiv" style="background-image: url(../../Content/Images/rili.jpg);
+    <div id="TrueMessageDiv" style="background-image: url(../../Content/Images/rili.jpg); 
         padding: 4px 4px 4px 4px; visibility: hidden; left: 71.5%; top: 350px; position: relative;
-        width: 340px;">
+        width: 340px; border-radius:5px;">
         真名：<input type="text" id="FriendRelayName" name="FriendRelayName" value="javascript:getcookie('shiny_friend_true_name')"
             style="width: 80px; padding: 0px 10px 0px 2px;" />&nbsp;&nbsp;&nbsp;&nbsp; QQ：<input
                 type="text" id="FriendQQ" name="FriendQQ" value="javascript:getcookie('shiny_friend_qq')"
@@ -228,15 +240,16 @@ Shiny
 我是女银我以女烎的名义许诺信息真实！
 真实信息只有.鲜艳.看的到哦！" style="font-size: 10px;">保证真实</a>
     </div>
-    <div style="padding: 4px 4px 4px 4px;background-image: url(../../Content/Images/rili.jpg);
-        left: 71.5%; top: 348px; position: relative; width: 340px;">
+    <div style="padding: 4px 4px 4px 4px; background-image: url(../../Content/Images/rili.jpg);
+        left: 71.5%; top: 348px; position: relative; width: 340px; border-radius:5px;">
         姓名：<input type="text" onclick="ShowFirendsDeteilMessage()" id="FriendName" name="FriendName"
             value="javascript:getcookie('shiny_friend_name')" style="width: 80px; padding: 0px 10px 0px 2px;" />
         &nbsp;&nbsp;&nbsp;&nbsp;<span style="margin: 0px 0px 0px 0px;">验证：</span> @*<img id="ImgYanZheng" alt="验证" src="../../Content/Images/CheckingImg/" style="width: 50px; height: 16px;
             margin: 2px 0px 0px 0px; padding: 0px 0px 0px 0px; position: absolute;" />*@
         @Html.Raw(str)
-        @*<span style="margin: 0px 51px 0px 0px;"></span>*@=&nbsp;&nbsp;<input type="text" onclick="javascript:this.value=''"
-            id="YanzhengValue" name="YanzhengValue" style="width: 20px;" title="" />
+        @*<span style="margin: 0px 51px 0px 0px;"></span>*@=&nbsp;&nbsp;<input type="text"
+            onclick="javascript:this.value=''" id="YanzhengValue" name="YanzhengValue" style="width: 20px;"
+            title="" />
         <a href="javascript:_Click_SecurityCode_GetNewCode_2011_4_6_17_36();" style="font-size: 10px;">
             换一张</a>
         <textarea name="MessageWords" onclick="ClearTextare()" class="bor input_click" ucflag="0"

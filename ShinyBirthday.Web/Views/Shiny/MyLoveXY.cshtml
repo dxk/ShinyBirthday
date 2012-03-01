@@ -17,14 +17,15 @@
                 i++;
             <span>@i , @item.Friender @item.Truename @item.Qq</span>
             <span>@item.Message </span>
+            <span>@item.Leavetime </span>
                 if (item.Usable == 1)
                 {
-            <a href="../Shiny/DisableMessage?id=@item.Id&pageNum=@Model.CurrentPagenum" style="color:Orange;">
+            <a href="../Shiny/DisableMessage?id=@item.Id&pageNum=@Model.CurrentPagenum" style="color:Orange;" title="此信息正常显示，点击影藏！">
                 禁止</a>
                 }
                 else
                 {
-            <a href="../Shiny/EnableMessage?id=@item.Id&pageNum=@Model.CurrentPagenum" style="color:Green;">
+            <a href="../Shiny/EnableMessage?id=@item.Id&pageNum=@Model.CurrentPagenum" style="color:Green;"  title="此信息已被影藏，点击显示！">
                 显示</a>
                 }
             <br />
@@ -43,6 +44,27 @@
             <a href="../Shiny/MyLoveXY?pageNum=@pi">-@pi_ </a>
                 }
                 pi_ = pi_ + 1;
+            }
+        }
+    </div>
+    <div>
+        @{
+            var j=0;
+            foreach (var topMessage in Model.ListTops)
+            {
+                j++;
+            <span>@j , @topMessage.Identity @topMessage.Message @topMessage.Leavetime</span>
+                if (topMessage.Enable == 1)
+                {
+            <a href="../Shiny/DisableTopMessage?id=@topMessage.Id" style="color:Orange;" title="此信息正常显示，点击影藏！">
+                禁止</a>
+                }
+                else
+                {
+            <a href="../Shiny/EnableTopMessage?id=@topMessage.Id" style="color:Green;"  title="此信息已被影藏，点击显示！">
+                显示</a>
+                }
+            <br />
             }
         }
     </div>

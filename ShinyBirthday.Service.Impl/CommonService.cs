@@ -18,6 +18,36 @@ namespace ShinyBirthday.Service.Impl
             return session.Query<ShinyInformation>().FirstOrDefault();
         }
 
+        public List<TopTitle> GetTitles()
+        {
+            return session.Query<TopTitle>().Where(p => p.Enable == 1).ToList();
+        }
+
+        public List<TopTitle> GetAllTitles()
+        {
+            return session.Query<TopTitle>().ToList();
+        }
+
+        public void AddTitles(TopTitle tt)
+        {
+            session.Save(tt);
+            session.Flush();
+        }
+
+        public void GLYDeleteTops(int id, bool yn)
+        {
+            TopTitle message = session.Get<TopTitle>(id);
+            if (message != null)
+            {
+                if (yn)
+                    message.Enable = 1;
+                else
+                    message.Enable = 0;
+                session.SaveOrUpdate(message);
+                session.Flush();
+            }
+        }
+
         public int GetVisitorvolume(string ip)
         {
             SystemTable st = session.Query<SystemTable>().ToList().Last();

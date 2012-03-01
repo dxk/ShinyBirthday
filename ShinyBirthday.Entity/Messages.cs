@@ -18,5 +18,7 @@ namespace ShinyBirthday.Entity
         public virtual string Qq { get; set; }
 
         public virtual int Usable { get; set; }
+
+        public virtual DateTime Leavetime { get; set; }
     }
 }

@@ -134,6 +134,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Shiny\AddMessageForm.cs" />
+    <Compile Include="Models\Shiny\AddTopMessage.cs" />
     <Compile Include="Models\Shiny\AllMessageViewModel.cs" />
     <Compile Include="Models\Shiny\MessageView.cs" />
     <Compile Include="Models\Shiny\ShinyInfoView.cs" />

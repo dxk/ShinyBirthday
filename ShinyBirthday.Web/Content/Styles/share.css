@@ -106,11 +106,32 @@ body{
 	padding:0px 20px;
 }
 
-.breadNav{
+.breadNav0{
 	color:#ccc;
 	padding-left:70px;
 	position:absolute;
 	top:30px;
+	left:85px;
+}
+.breadNav1{
+	color:#ccc;
+	padding-left:170px;
+	position:absolute;
+	top:20px;
+	left:185px;
+}
+.breadNav2{
+	color:#ccc;
+	padding-left:370px;
+	position:absolute;
+	top:5px;
+	left:285px;
+}
+.breadNav3{
+	color:#ccc;
+	padding-left:370px;
+	position:absolute;
+	top:15px;
 	left:85px;
 }
 

@@ -12,5 +12,12 @@ namespace ShinyBirthday.Service
 
         int GetVisitorvolume(string ip);
 
+        List<TopTitle> GetTitles();
+
+        List<TopTitle> GetAllTitles();
+
+        void AddTitles(TopTitle tt);
+
+        void GLYDeleteTops(int id,bool yn);
     }
 }

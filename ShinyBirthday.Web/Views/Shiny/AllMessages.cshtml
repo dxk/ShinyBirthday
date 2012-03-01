@@ -9,14 +9,19 @@
     <link rel="shortcut icon" href="../../Content/Images/QTS.ico" type="image/x-icon" />
 </head>
 <body>
-    <div style="">
+    <div style="position: absolute; left: 200px; top: 50px;">
         @{
             var i = 0;
             foreach (var item in Model.ListMessage)
             {
                 i++;
-            <span>@i , @item.Friender </span>
-            <span>@item.Message </span>
+                
+            <div>
+                <span><span style="color:Gray;">@i </span>@item.Friender: </span>
+                <span>@item.Message </span>
+                <span title="留言时间： @item.Leavetime" style=" cursor:pointer;">*</span>
+            </div>
+            
             <br />
             }
         }

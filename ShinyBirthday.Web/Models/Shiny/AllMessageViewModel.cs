@@ -10,8 +10,11 @@ namespace ShinyBirthday.Web.Models.Shiny
     {
         public List<Messages> ListMessage { get; set; }
 
+        public List<TopTitle> ListTops { get; set; }
+
         public int PageNos { get; set; }
 
         public int CurrentPagenum { get; set; }
+
     }
 }
