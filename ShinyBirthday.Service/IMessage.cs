@@ -15,7 +15,7 @@ namespace ShinyBirthday.Service
 
         int GetLiveMessageCount();
 
-        List<Messages> GetMessagesByPage(int pageNum,int count,out int pageNos);
+        List<Messages> GetMessagesByPage(int pageNum,int count,out int pageNos,string sraechStr);
 
         /// <summary>
         /// 

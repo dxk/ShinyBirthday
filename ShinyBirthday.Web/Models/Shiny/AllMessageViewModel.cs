@@ -16,5 +16,7 @@ namespace ShinyBirthday.Web.Models.Shiny
 
         public int CurrentPagenum { get; set; }
 
+        public string SearchStr { get; set; }
+
     }
 }

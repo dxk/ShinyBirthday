@@ -1,0 +1,47 @@
+﻿@model HandleErrorInfo
+@{
+    ViewBag.Title = "Error";
+    Layout = null;
+    var ex = Model.Exception;
+
+    var errorMessage = String.Empty;
+
+    if (ex is FCSS.Services.Management.Exceptions.UnAuthorizedException)
+    {
+        var uex = ex as FCSS.Services.Management.Exceptions.UnAuthorizedException;
+        errorMessage = "Sorry, 您没有权限访问！" + uex.ErrorMessage;
+    }
+    else if (ex is Youmay.Exceptions.NotExistException)
+    {
+        errorMessage = "Sorry, 页面没有找到！";
+    }
+    else if (ex is FCSS.Services.Management.Exceptions.IssueColsedCantNotOperateException)
+    {
+        errorMessage = "Sorry,该问题已关闭，不能进行操作!";
+    }
+    else
+    {
+        errorMessage = " Sorry, an error occurred while processing your request.";
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@FCSSResource.FujitsuCustomerManagementSystem</title>
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="@Url.Content("~/Content/Styles/share.css") " />
+</head>
+<body style="background:url(@Url.Content("~/Content/Images/body.png"))">
+    <div style="background:url(@Url.Content("~/Content/Images/error_page.png")) no-repeat; 
+        margin:auto; margin-top:150px; width:600px;height:195px">
+        <table style="height: 100%;">
+            <tr>
+                <td style="width: 130px;">
+                </td>
+                <td style="font-size: 18px">
+                    @errorMessage
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

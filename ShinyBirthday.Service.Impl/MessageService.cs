@@ -43,14 +43,17 @@ namespace ShinyBirthday.Service.Impl
             return session.Query<Messages>().Where(p => p.Usable == 1).Count();
         }
 
-        public List<Messages> GetMessagesByPage(int pageNum, int count, out int pageNos)
+        public List<Messages> GetMessagesByPage(int pageNum, int count, out int pageNos, string sraechStr)
         {
-            var query = session.Query<Messages>().Where(p => p.Usable == 1).ToList();
+            var _query = session.Query<Messages>().Where(p => p.Usable == 1);
+            if (!string.IsNullOrEmpty(sraechStr) && sraechStr!="")
+                _query = _query.Where(q => q.Friender.Contains(sraechStr) || q.Message.Contains(sraechStr));
+            var query = _query.ToList();
             if (query.Count % count > 0)
                 pageNos = query.Count / count + 1;
             else
                 pageNos = query.Count / count;
-            return query.Skip(pageNum * count).Take(count).Select(q =>
+            return query.OrderByDescending(k => k.Leavetime).Skip(pageNum * count).Take(count).Select(q =>
                     new Messages
                     {
                         Id = q.Id,

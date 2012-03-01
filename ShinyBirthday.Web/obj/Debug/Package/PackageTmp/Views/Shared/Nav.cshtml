@@ -1,0 +1,125 @@
+﻿@using FCSS.Model.Enums;
+@model FCSS.Services.Management.Auth.MasterInfoView
+@{ 
+    var privilege = Model.Privilege;
+}
+<div class="nav">
+    @if (privilege.Has(Privilege.IssueManagement) || !privilege.Has(Privilege.AttachementManagement)
+    || privilege.Has(Privilege.ToDoSchemeManagement) || privilege.Has(Privilege.PatchManagement)
+    || privilege.Has(Privilege.DataImport))
+    {
+        <dl>
+            <dt><span class="system"></span>@FCSSResource.SystemManagement</dt>
+            <dd>
+                <ul>
+                    @if (privilege.Has(Privilege.IssueManagement))
+                    {
+                        <li>@Html.ActionLink(FCSSResource.IssueManagement, "Index", "Issue", new { SearchType = FCSS.Services.Management.CustomerService.IssueSearchType.All }, null)</li>
+                    }
+                    @if (privilege.Has(Privilege.AttachementManagement))
+                    {
+                        <li>@Html.ActionLink(FCSSResource.AttachementManagement, "Index", "Attachment")</li>
+                    }
+                    @if (privilege.Has(Privilege.ToDoSchemeManagement))
+                    {
+                        <li>@Html.ActionLink(FCSSResource.ToDoSchemeManagement, "Index", "ToDoScheme")</li>
+                    }
+                    @if (privilege.Has(Privilege.PatchManagement))
+                    {
+                        <li>@Html.ActionLink(FCSSResource.PatchManagement, "Index", "Patch")</li>
+                    }
+                    @if (privilege.Has(Privilege.DataImport))
+                    {
+                        <li>@Html.ActionLink(FCSSResource.DataImport, "Index", "DataImport")</li>
+                    }
+                </ul>
+            </dd>
+        </dl>
+    }
+    @if (privilege.Has(Privilege.DepartmentIssueList) || privilege.Has(Privilege.ProjectGroupIssueList)
+        || privilege.Has(Privilege.MineIssueList) || privilege.Has(Privilege.ToDoRecordManagement))
+    {
+        <dl>
+            <dt><span class="customerService"></span>@FCSSResource.CustomerServiceManagement</dt>
+            <dd>
+                <ul>
+                    @if (privilege.Has(Privilege.DepartmentIssueList))
+                    {
+                        <li>@Html.ActionLink(FCSSResource.DepartmentIssue, "DepartmentIssue", "Issue")</li>
+                    }
+                    @if (privilege.Has(Privilege.ProjectGroupIssueList))
+                    {
+                        <li>@Html.ActionLink(FCSSResource.ProjectGroupIssueList, "ProjectGroupIssue", "Issue")</li>
+                    }
+                    @if (privilege.Has(Privilege.MineIssueList))
+                    {
+                        <li>@Html.ActionLink(FCSSResource.MyIssue, "MyIssue", "Issue")</li>
+                    }
+                    @if (privilege.Has(Privilege.ToDoRecordManagement))
+                    {
+                        <li>@Html.ActionLink(FCSSResource.ToDoRecordManagement, "Index", "ToDoRecord")</li>
+                    }
+                </ul>
+            </dd>
+        </dl>
+    }
+    @if (privilege.Has(Privilege.IssueReport) || privilege.Has(Privilege.PatchReport)
+        || privilege.Has(Privilege.IssueSpendTimeDetail) || privilege.Has(Privilege.WorkSpendTimeDetail))
+    {
+        <dl>
+            <dt><span class="report"></span>@FCSSResource.Report</dt>
+            <dd>
+                <ul>
+                    @if (privilege.Has(Privilege.IssueReport))
+                    {
+                        <li>@Html.ActionLink(FCSSResource.IssueCountTotal, "Index", "IssueReport")</li>
+                    }
+                    @if (privilege.Has(Privilege.PatchReport))
+                    {
+                        <li>@Html.ActionLink(FCSSResource.PatchCountTotal, "Index", "PatchReport")</li>
+                    }
+                    @if (privilege.Has(Privilege.IssueSpendTimeDetail))
+                    {
+                        <li>@Html.ActionLink(FCSSResource.IssueSpendTimeDetail, "Index", "IssueSpendTimeReport")</li>
+                    }
+                    @if (privilege.Has(Privilege.WorkSpendTimeDetail))
+                    {
+                        <li>@Html.ActionLink(FCSSResource.WorkSpendTimeDetail, "Index", "WorkingHourReport")</li>
+                    }
+                </ul>
+            </dd>
+        </dl>
+    }
+    @if (privilege.Has(Privilege.UserManagement) || privilege.Has(Privilege.GroupManagement)
+        || privilege.Has(Privilege.CustomerManagement) || privilege.Has(Privilege.ContactManagement)
+        || privilege.Has(Privilege.ProjectManagement))
+    {
+        <dl style="margin-bottom: 0px">
+            <dt><span class="master"></span>@FCSSResource.MasterManagement</dt>
+            <dd>
+                <ul>
+                    @if (privilege.Has(Privilege.UserManagement))
+                    {
+                        <li>@Html.ActionLink(FCSSResource.UserManagement, "Index", "User")</li>
+                    }
+                    @if (privilege.Has(Privilege.GroupManagement))
+                    {
+                        <li>@Html.ActionLink(FCSSResource.UserGroupManagement, "Index", "Group")</li>
+                    }
+                    @if (privilege.Has(Privilege.CustomerManagement))
+                    {
+                        <li>@Html.ActionLink(FCSSResource.CustomerManagement, "Index", "Customer")</li>
+                    }
+                    @if (privilege.Has(Privilege.ContactManagement))
+                    {
+                        <li>@Html.ActionLink(FCSSResource.ContactManagement, "Index", "CustomerContact")</li>
+                    }
+                    @if (privilege.Has(Privilege.ProjectManagement))
+                    {
+                        <li>@Html.ActionLink(FCSSResource.ProjectManagement, "Index", "Project")</li>
+                    }
+                </ul>
+            </dd>
+        </dl>
+    }
+</div>

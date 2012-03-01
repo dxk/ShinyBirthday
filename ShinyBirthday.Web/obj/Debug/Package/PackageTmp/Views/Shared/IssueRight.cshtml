@@ -1,0 +1,377 @@
+﻿@model FCSS.Management.Web.Models.Issue.IssueRightModel
+@{var projectId = Model.IssueRightInfo.Project != null ? Model.IssueRightInfo.Project.Id : 0; }
+<script type="text/javascript">
+    $(function () {
+        $(".fileTab").tab();
+    });
+
+    $(document).ready(function () {
+
+        var issueTag = $("#IssueTag");
+
+        if (issueTag.html() != null) {
+            issueTag.autoSearchProjectTag({
+                url: '@Url.Action("GetProjectTagByKeyword", "Common", new { projectId = @projectId })',
+                hidde: '#IssueTagId ',
+                description: '#description'
+            });
+        }
+
+        $(".addissuetag").find("a").bind("click", function () {
+            deleteTag($(this).attr("action"));
+        });
+
+        $("#setissue").click(function () {
+            var form = $("#SetForm");
+            form.ajaxForm({
+                dataType: "json",
+                success: function (data) {
+                    if (data.Success) {
+                        alert(data.SuccessMessages.join("\n"));
+                    } else {
+                        alert(data.ModelErrors.join("\n"));
+                    }
+                }
+            }).submit();
+        });
+
+        //问题右边隐藏
+        var QOther = $(".questionOther");
+        var hideBtn = $(".hideBtn");
+        var fixBtn = $(".fixBtn");
+        var speed = 0, minW = 8, maxW = 235;
+
+        if ($.cookie("ISSUE_RIGHT_STUTAS") == "true") {
+            QOther.stop().css({ width: minW });
+            hideBtn.hide();
+            fixBtn.show();
+        }
+
+        $("body").mousemove(function (e) {
+            w = $(window).width();
+            if (w < 1000) {
+                w = 1000;
+            }
+            if (e.pageX >= w - 45) {
+                if ($.cookie("ISSUE_RIGHT_STUTAS") == "true") {
+                    QOther.stop().animate({ width: maxW }, speed);
+                    ControlReplyWidth();
+                }
+            }
+        });
+
+        hideBtn.click(function () {
+            QOther.stop().animate({ width: minW }, speed, function () {
+                hideBtn.hide();
+                fixBtn.show();
+            });
+            $.cookie("ISSUE_RIGHT_STUTAS", true, { path: "/" });
+            ControlReplyWidth();
+        });
+
+        QOther.mouseleave(function () {
+            if ($.cookie("ISSUE_RIGHT_STUTAS") == "true") {
+                QOther.stop().animate({ width: minW }, speed);
+                hideBtn.hide();
+                fixBtn.show();
+            }
+            ControlReplyWidth();
+        });
+
+        QOther.find("input,select").click(function () {
+            QOther.stop().animate({ width: maxW }, speed);
+            $.cookie("ISSUE_RIGHT_STUTAS", false, { path: "/" });
+            fixBtn.hide();
+            hideBtn.show();
+            ControlReplyWidth();
+        });
+
+        fixBtn.click(function () {
+            QOther.stop().animate({ width: maxW }, speed);
+            $.cookie("ISSUE_RIGHT_STUTAS", false, { path: "/" });
+            fixBtn.hide();
+            hideBtn.show();
+            ControlReplyWidth();
+        });
+
+        $("#addissuetag").click(function () {
+            var searchUserForm = $("#addissuetag").closest("form");
+            searchUserForm.ajaxForm({
+                type: "Post",
+                success: function (data) {
+                    if (data.Success) {
+                        ReloadTags();
+                        alert(data.SuccessMessages.join("\n") + data.ModelErrors.join("\n"));
+                    } else {
+                        alert(data.ErrorMessages.join("\n") + data.ModelErrors.join("\n"));
+                    }
+                }
+            }).submit();
+        });
+    });
+
+    function deleteTag(obj) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("DeleteIssueTag", "Issue", new { issueId = Model.IssueRightInfo.Id })&projectTagId=' + parseInt(obj),
+            dataType: "json",
+            success: function (data) {
+                ReloadTags();
+                alert(data.SuccessMessages.join("\n") + data.ModelErrors.join("\n"));
+            }
+        });
+    }
+
+    function ReloadTags() {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("GetIssueTag", "Common", new { id = Model.IssueRightInfo.Id })',
+            dataType: "json",
+            success: function (data) {
+                $(".addissuetag").html("");
+                $.each(data, function (index, view) {
+                    $("<li><span>" + view["Name"] + "</span><a href='javascript:void(0)' action='" + view["Id"] + "'></a><li>").appendTo($(".addissuetag"));
+                    $(".addissuetag").find("a").unbind("click").bind("click", function () {
+                        deleteTag($(this).attr("action"));
+                    });
+                });
+            }
+        });
+    }
+</script>
+<div class="questionOther">
+    <div style="width: 235px;">
+        <dl class="QTop">
+            <dt>@FCSSResource.IssueInfo<span class="hideBtn"></span><span class="fixBtn"></span></dt>
+            <dd>
+                <p>
+                    @FCSSResource.IssueNO：<span>@Model.IssueRightInfo.IssueNo</span></p>
+                <p>
+                    @FCSSResource.Customer：
+                    @{var customer = Model.IssueRightInfo.Company != null ? Model.IssueRightInfo.Company.Name : "";}
+                    <span>@customer</span>
+                </p>
+                <p>
+                    @FCSSResource.Project：
+                    @{var project = Model.IssueRightInfo.Project != null ? Model.IssueRightInfo.Project.Name : "-";}
+                    <span>@project</span>
+                </p>
+                <p>
+                    @FCSSResource.Window：<span>@Model.IssueRightInfo.Window.Name</span></p>
+                <p>
+                    @FCSSResource.Asker：<span>@Model.IssueRightInfo.Asker.Name</span></p>
+                <p>
+                    @FCSSResource.CurrentProcessors：<span>@Model.IssueRightInfo.Follower.Name</span>
+                </p>
+                <p>
+                    @FCSSResource.LastReplyer：
+                    @{var lastReplyer = Model.IssueRightInfo.LastReplyer != null ? Model.IssueRightInfo.LastReplyer.Name : "";}
+                    <span>@lastReplyer</span>
+                </p>
+                <p>
+                    @FCSSResource.CreationDate：<span>@Model.IssueRightInfo.CreationDate.ToString("yyyy-MM-dd HH:mm")</span></p>
+                <p>
+                    @FCSSResource.ClaimDate：<span>@(Model.IssueRightInfo.ClaimDate.HasValue ? Model.IssueRightInfo.ClaimDate.Value.ToString("yyyy-MM-dd HH:mm") : FCSSResource.Unclaim)</span></p>
+                @{ var index = 1;
+                   foreach (var item in Model.IssueRightInfo.TransferRecord)
+                   {
+                    <p>
+                        @string.Format(FCSSResource.TransferDate, @index)： <span>@item.TransferDate.ToString("yyyy-MM-dd HH:mm")</span></p>
+                    <p>
+                        @FCSSResource.TransferOfPersonnel：<span>@item.From.Name → @item.To.Name</span></p>
+                
+                                                                             index++;
+                   }
+                }
+                <p>
+                    @FCSSResource.CloseDate：<span>@(Model.IssueRightInfo.CloseDate.HasValue ? Model.IssueRightInfo.CloseDate.Value.ToString("yyyy-MM-dd HH:mm") : FCSSResource.Unclosed)</span></p>
+                <p>
+                    @FCSSResource.State：<span>@I18NUtils.Text(Model.IssueRightInfo.Status)</span></p>
+            </dd>
+        </dl>
+        @if (Model.ShowIssueSet)
+        {
+            <dl class="bg">
+                <dt>@FCSSResource.IssueSet</dt>
+                <dd>
+                    @using (Html.BeginForm("Set", "Issue", FormMethod.Post, new { Id = "SetForm" }))
+                    {
+                        <table>
+                            <tr>
+                                <td width="90px">
+                                    @FCSSResource.IssueType：
+                                </td>
+                                <td>
+                                    @if (Model.CanSet)
+                                    {
+                                        @Html.DropDownList("Type", Model.ListIssueType, FCSSResource.PleaseSelect, new { style = "width: 110px" })
+                                    }
+                                    else
+                                    {
+                                        @Html.DropDownList("Type", Model.ListIssueType, FCSSResource.PleaseSelect, new { style = "width: 110px", disabled = "disabled" })
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @FCSSResource.IsNeedOffer：
+                                </td>
+                                <td>
+                                    @if (Model.CanSet)
+                                    {
+                                        @Html.DropDownList("IsNeedOffer", Model.ListIsNeedOffer, FCSSResource.PleaseSelect, new { style = "width: 110px" })
+                                    }
+                                    else
+                                    { 
+                               
+                                        @Html.DropDownList("IsNeedOffer", Model.ListIsNeedOffer, FCSSResource.PleaseSelect, new { style = "width: 110px", disabled = "disabled" })
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @FCSSResource.IssueProcess：
+                                </td>
+                                <td>
+                                    @if (Model.CanSet)
+                                    {
+                                        @Html.DropDownList("Process", Model.ListIssueProcess, FCSSResource.PleaseSelect, new { style = "width: 110px" })
+                                    }
+                                    else
+                                    { 
+                                   
+                                        @Html.DropDownList("Process", Model.ListIssueProcess, FCSSResource.PleaseSelect, new { style = "width: 110px", disabled = "disabled" })
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @FCSSResource.CustomersConfirm：
+                                </td>
+                                <td>
+                                    @if (Model.CanSet)
+                                    { @Html.DropDownList("IsCustomerAffirm", Model.ListUserIsOk, FCSSResource.PleaseSelect, new { style = "width: 110px" })
+                                   
+                                    }
+                                    else
+                                    {
+                                        @Html.DropDownList("IsCustomerAffirm", Model.ListUserIsOk, FCSSResource.PleaseSelect, new { style = "width: 110px", disabled = "disabled" })
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @FCSSResource.FreeWorkTime：
+                                </td>
+                                <td>
+                                    @if (Model.CanSet)
+                                    {
+                                        @Html.TextBox("FreeWorkTime", Model.IssueRightInfo.FreeWorkTime, new { style = "width:80px" })
+                                    }
+                                    else
+                                    { 
+                                    
+                                        @Html.TextBox("FreeWorkTime", Model.IssueRightInfo.FreeWorkTime, new { style = "width:80px", disabled = "disabled" })
+                                    }
+                                    @FCSSResource.Hour
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.Hidden("Id", Model.IssueRightInfo.Id)
+                                    @if (Model.CanSet)
+                                    {
+                                        <input type="button" id="setissue" value="@FCSSResource.Save" />
+                                    }
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                </dd>
+            </dl>
+        }
+        @if (Model.ShowIssueTag)
+        {
+            <dl class="bg">
+                <dt>@FCSSResource.AssociationLabel</dt>
+                <dd>
+                    <div>
+                        @using (Html.BeginForm("AddIssueTag", "Issue", FormMethod.Post))
+                        {
+                            @Html.Hidden("Id", Model.IssueRightInfo.Id)
+                       if (Model.CanSet)
+                       {
+                            @Html.TextBox("IssueTag", null, new { @style = "width:140px;" })
+                       }
+                            @Html.Hidden("IssueTagId")
+                       if (Model.CanSet)
+                       {
+                            <input type="button" id="addissuetag" value="@FCSSResource.Add" /><br />
+                       }
+                        }
+                    </div>
+                    <div>
+                        <ul class="labels addissuetag">
+                            @{
+                        foreach (var item in Model.IssueRightInfo.Tags)
+                        {
+                                <li>@item.Name
+                                    @if (Model.CanSet)
+                                    {
+                                        <a href="javascript:void(0)" action="@item.Id"></a>
+                                    }
+                                </li>
+                        }
+                            }
+                        </ul>
+                    </div>
+                    <div style="clear: both;">
+                    </div>
+                </dd>
+            </dl>
+        }
+        <dl>
+            <dt>@FCSSResource.WithAccessories</dt>
+            <dd class="bottomGg fileTab fileLink">
+                <ul>
+                    <li>@FCSSResource.All</li>
+                    <li>@FCSSResource.Customers</li>
+                    <li>@FCSSResource.SystemUser</li>
+                </ul>
+                <dl>
+                    @{
+                        foreach (var item in Model.IssueRightInfo.AllAttachments)
+                        {
+                        <p>
+                            @Html.ActionLink(item.Name, "Download", "Common", new { id = item.Id }, null)</p>
+                        }
+                    }
+                </dl>
+                <dl>
+                    @{
+                        foreach (var item in Model.IssueRightInfo.CustomerAttachments)
+                        {
+                        <p>
+                            @Html.ActionLink(item.Name, "Download", "Common", new { id = item.Id }, null)</p>
+                        }
+                    }
+                </dl>
+                <dl>
+                    @{
+                        foreach (var item in Model.IssueRightInfo.SystemUserAttachments)
+                        {
+                        <p>
+                            @Html.ActionLink(item.Name, "Download", "Common", new { id = item.Id }, null)</p>
+                        }
+                    }
+                </dl>
+            </dd>
+        </dl>
+        <dl class="QBottom">
+        </dl>
+    </div>
+</div>
+<div id="description">
+</div>

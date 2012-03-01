@@ -98,16 +98,17 @@ namespace ShinyBirthday.Web.Controllers
             return View();
         }
 
-        public ActionResult AllMessages(int pageNum)
+        public ActionResult AllMessages(int pageNum, string searchStr)
         {
             int sc = 10;
             int pageNos = 0;
-            List<Messages> list = messageservice.GetMessagesByPage(pageNum, sc, out pageNos);
+            List<Messages> list = messageservice.GetMessagesByPage(pageNum, sc, out pageNos, searchStr.Trim());
             return View(new AllMessageViewModel()
             {
                 ListMessage = list,
                 PageNos = pageNos,
-                CurrentPagenum = pageNum
+                CurrentPagenum = pageNum,
+                SearchStr = searchStr
             });
         }
 
