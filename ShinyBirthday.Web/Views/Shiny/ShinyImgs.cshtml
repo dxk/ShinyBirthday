@@ -1,6 +1,7 @@
 ﻿@{
     Layout = "";
 }
+@model ShinyBirthday.Web.Models.Shiny.ShinyInfoView
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,434 +12,30 @@
     <meta name="keywords" content="jquery, css3, images, wall, thumbnails, slide, animate" />
     <meta name="author" content="Codrops" />
     <link rel="stylesheet" type="text/css" href="../../Content/ImgWall/css/style.css" />
-    @*<link href='http//fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet'
-        type='text/css' />
-    <link href='http//fonts.googleapis.com/css?family=Wire+One' rel='stylesheet' type='text/css' />*@
 </head>
 <body>
     <div class="content">
         <header>
-				<h1>A Shiny world</h1>
+				<h1>A Shiny World</h1>
 				<span>Image Wall * 鲜艳</span>
 			</header>
         <div class="iw_wrapper">
             <ul class="iw_thumbs" id="iw_thumbs">
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/1.jpg" data-img="../../Content/ImgWall/images/full/1.jpg"
-                        alt="Thumb1" /><div>
-                            <h2>
-                                Serenity</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/2.jpg" data-img="../../Content/ImgWall/images/full/2.jpg"
-                        alt="Thumb2" /><div>
-                            <h2>
-                                Silence</h2>
-                            <p>
-                                Separated they live in Bookmarksgrove right at the coast of the Semantics.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/3.jpg" data-img="../../Content/ImgWall/images/full/3.jpg"
-                        alt="Thumb3" /><div>
-                            <h2>
-                                Abstraction</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/8.jpg" data-img="../../Content/ImgWall/images/full/8.jpg"
-                        alt="Thumb8" /><div>
-                            <h2>
-                                Happiness</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/9.jpg" data-img="../../Content/ImgWall/images/full/9.jpg"
-                        alt="Thumb9" /><div>
-                            <h2>
-                                Greatness</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/10.jpg" data-img="../../Content/ImgWall/images/full/10.jpg"
-                        alt="Thumb10" /><div>
-                            <h2>
-                                Abstraction</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/6.jpg" data-img="../../Content/ImgWall/images/full/6.jpg"
-                        alt="Thumb6" /><div>
-                            <h2>
-                                Virtue</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/7.jpg" data-img="../../Content/ImgWall/images/full/7.jpg"
-                        alt="Thumb7" /><div>
-                            <h2>
-                                Beauty</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/8.jpg" data-img="../../Content/ImgWall/images/full/8.jpg"
-                        alt="Thumb8" /><div>
-                            <h2>
-                                Happiness</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/12.jpg" data-img="../../Content/ImgWall/images/full/12.jpg"
-                        alt="Thumb12" /><div>
-                            <h2>
-                                Greatness</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/4.jpg" data-img="../../Content/ImgWall/images/full/4.jpg"
-                        alt="Thumb4" /><div>
-                            <h2>
-                                Attraction</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/5.jpg" data-img="../../Content/ImgWall/images/full/5.jpg"
-                        alt="Thumb5" /><div>
-                            <h2>
-                                Growth</h2>
-                            <p>
-                                A small river named Duden flows by their place and supplies it with the necessary
-                                regelialia.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/6.jpg" data-img="../../Content/ImgWall/images/full/6.jpg"
-                        alt="Thumb6" /><div>
-                            <h2>
-                                Virtue</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/7.jpg" data-img="../../Content/ImgWall/images/full/7.jpg"
-                        alt="Thumb7" /><div>
-                            <h2>
-                                Beauty</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/10.jpg" data-img="../../Content/ImgWall/images/full/10.jpg"
-                        alt="Thumb10" /><div>
-                            <h2>
-                                Abstraction</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/11.jpg" data-img="../../Content/ImgWall/images/full/11.jpg"
-                        alt="Thumb11" /><div>
-                            <h2>
-                                Attraction</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/3.jpg" data-img="../../Content/ImgWall/images/full/3.jpg"
-                        alt="Thumb3" /><div>
-                            <h2>
-                                Virtue</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/13.jpg" data-img="../../Content/ImgWall/images/full/13.jpg"
-                        alt="Thumb13" /><div>
-                            <h2>
-                                Happiness</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/14.jpg" data-img="../../Content/ImgWall/images/full/14.jpg"
-                        alt="Thumb14" /><div>
-                            <h2>
-                                Serenity</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/2.jpg" data-img="../../Content/ImgWall/images/full/2.jpg"
-                        alt="Thumb1" /><div>
-                            <h2>
-                                Virtue</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/4.jpg" data-img="../../Content/ImgWall/images/full/4.jpg"
-                        alt="Thumb2" /><div>
-                            <h2>
-                                Serenity</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/11.jpg" data-img="../../Content/ImgWall/images/full/11.jpg"
-                        alt="Thumb11" /><div>
-                            <h2>
-                                Attraction</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/12.jpg" data-img="../../Content/ImgWall/images/full/12.jpg"
-                        alt="Thumb12" /><div>
-                            <h2>
-                                Virtue</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/13.jpg" data-img="../../Content/ImgWall/images/full/13.jpg"
-                        alt="Thumb13" /><div>
-                            <h2>
-                                Happiness</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/14.jpg" data-img="../../Content/ImgWall/images/full/14.jpg"
-                        alt="Thumb14" /><div>
-                            <h2>
-                                Serenity</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/2.jpg" data-img="../../Content/ImgWall/images/full/2.jpg"
-                        alt="Thumb1" /><div>
-                            <h2>
-                                Virtue</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/4.jpg" data-img="../../Content/ImgWall/images/full/4.jpg"
-                        alt="Thumb2" /><div>
-                            <h2>
-                                Serenity</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/6.jpg" data-img="../../Content/ImgWall/images/full/6.jpg"
-                        alt="Thumb3" /><div>
-                            <h2>
-                                Attraction</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/8.jpg" data-img="../../Content/ImgWall/images/full/8.jpg"
-                        alt="Thumb4" /><div>
-                            <h2>
-                                Serenity</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/12.jpg" data-img="../../Content/ImgWall/images/full/12.jpg"
-                        alt="Thumb1" /><div>
-                            <h2>
-                                Serenity</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/2.jpg" data-img="../../Content/ImgWall/images/full/2.jpg"
-                        alt="Thumb2" /><div>
-                            <h2>
-                                Silence</h2>
-                            <p>
-                                Separated they live in Bookmarksgrove right at the coast of the Semantics.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/3.jpg" data-img="../../Content/ImgWall/images/full/3.jpg"
-                        alt="Thumb3" /><div>
-                            <h2>
-                                Abstraction</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/4.jpg" data-img="../../Content/ImgWall/images/full/4.jpg"
-                        alt="Thumb4" /><div>
-                            <h2>
-                                Attraction</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/5.jpg" data-img="../../Content/ImgWall/images/full/5.jpg"
-                        alt="Thumb5" /><div>
-                            <h2>
-                                Growth</h2>
-                            <p>
-                                A small river named Duden flows by their place and supplies it with the necessary
-                                regelialia.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/6.jpg" data-img="../../Content/ImgWall/images/full/6.jpg"
-                        alt="Thumb6" /><div>
-                            <h2>
-                                Virtue</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/7.jpg" data-img="../../Content/ImgWall/images/full/7.jpg"
-                        alt="Thumb7" /><div>
-                            <h2>
-                                Beauty</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/8.jpg" data-img="../../Content/ImgWall/images/full/8.jpg"
-                        alt="Thumb8" /><div>
-                            <h2>
-                                Happiness</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/9.jpg" data-img="../../Content/ImgWall/images/full/9.jpg"
-                        alt="Thumb9" /><div>
-                            <h2>
-                                Greatness</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/10.jpg" data-img="../../Content/ImgWall/images/full/10.jpg"
-                        alt="Thumb10" /><div>
-                            <h2>
-                                Abstraction</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/11.jpg" data-img="../../Content/ImgWall/images/full/11.jpg"
-                        alt="Thumb11" /><div>
-                            <h2>
-                                Attraction</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/1.jpg" data-img="../../Content/ImgWall/images/full/1.jpg"
-                        alt="Thumb12" /><div>
-                            <h2>
-                                Virtue</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/13.jpg" data-img="../../Content/ImgWall/images/full/13.jpg"
-                        alt="Thumb13" /><div>
-                            <h2>
-                                Happiness</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/14.jpg" data-img="../../Content/ImgWall/images/full/14.jpg"
-                        alt="Thumb14" /><div>
-                            <h2>
-                                Serenity</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/2.jpg" data-img="../../Content/ImgWall/images/full/2.jpg"
-                        alt="Thumb1" /><div>
-                            <h2>
-                                Virtue</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/4.jpg" data-img="../../Content/ImgWall/images/full/4.jpg"
-                        alt="Thumb2" /><div>
-                            <h2>
-                                Serenity</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
-                <li>
-                    <img src="../../Content/ImgWall/images/thumbs/6.jpg" data-img="../../Content/ImgWall/images/full/6.jpg"
-                        alt="Thumb3" /><div>
-                            <h2>
-                                Attraction</h2>
-                            <p>
-                                Far far away, behind the word mountains there live the blind texts.</p>
-                        </div>
-                </li>
+                @for (int i = 1; i <= Model.Visitorvolume; i++)
+                {
+                    string urlthumbs = "../../Content/ImgWall/images/thumbs/" + i + ".jpg";
+                    string urlfull = "../../Content/ImgWall/images/full/" + i + ".jpg";
+                    <li>
+                        <img src="@urlthumbs" data-img="@urlfull"
+                            alt="Thumb1" /><div>
+                                <h2>
+                                    Shiny</h2>
+                                <p>
+                                    I always beside you never go far.</p>
+                            </div>
+                    </li>
+                    
+                }
             </ul>
         </div>
         <div id="iw_ribbon" class="iw_ribbon">
@@ -707,8 +304,8 @@
 							    $image.css({
 							        //'width': theImage.width + 'px',
 							        //'height': theImage.height + 'px',
-							        'margin-left': -300+'px',// -theImage.width / 2 + 'px',
-							        'margin-top': -100+'px'// -theImage.height / 2 + 'px'
+							        'margin-left': -300 + 'px', // -theImage.width / 2 + 'px',
+							        'margin-top': -200 + 'px'// -theImage.height / 2 + 'px'
 							    });
 							};
 

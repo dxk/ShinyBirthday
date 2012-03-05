@@ -8,6 +8,7 @@ using ShinyBirthday.Service;
 using ShinyBirthday.Web.Models.Shiny;
 using Youmay.Web;
 using ShinyBirthday.Entity;
+using System.Configuration;
 
 namespace ShinyBirthday.Web.Controllers
 {
@@ -93,9 +94,10 @@ namespace ShinyBirthday.Web.Controllers
 
         public ActionResult ShinyImgs()
         {
-            //int visitorNum = common.GetVisitorvolume(GetClientIp());
-            //ShinyInfoView siv = new ShinyInfoView(common.GetShiny(), visitorNum);
-            return View();
+            string path = Server.MapPath("~/Content/ImgWall/thumbs");
+            string imgcounts = ConfigurationManager.AppSettings["ImageCount"];
+            ShinyInfoView siv = new ShinyInfoView(common.GetShiny(), Convert.ToInt32(imgcounts), null);
+            return View(siv);
         }
 
         public ActionResult AllMessages(int pageNum, string searchStr)
